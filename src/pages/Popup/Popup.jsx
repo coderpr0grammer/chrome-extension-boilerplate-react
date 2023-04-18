@@ -7,10 +7,9 @@ import image from '../../assets/img/icon-128.png';
 
 const Popup = () => {
   return (
-    <div className="App" style={{ flex: 1, width: '100%', height: '100%' }}>
-      <h1 style={{ lineHeight: 1, marginTop: 10, marginBottom: 0 }}>Skym 🤖</h1>
-      <h4 style={{ marginTop: 5 }}>powered by ai 🤖</h4>
-      <Button variant="primary">Helo</Button>
+    <div className="App" style={{ width: 800, height: 800 }}>
+      <h1 style={{ lineHeight: 1, marginTop: 10, marginBottom: 0, position: 'fixed' }}>Skm.ai 🤖</h1>
+
     </div>
   );
 };
