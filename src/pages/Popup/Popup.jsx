@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/img/logo.svg';
 import Greetings from '../../containers/Greetings/Greetings';
 import './Popup.css';
@@ -8,6 +8,8 @@ import ResultComponent from './ResultComponent';
 import Searchbar from './Searchbar';
 
 const Popup = () => {
+
+  const [results, setResults] = useState([1, 2, 3, 4, 5, 6]);
   return (
     <div
       className="App"
@@ -31,7 +33,6 @@ const Popup = () => {
         }}
       >
         {'{ Skm }'}
-        <br></br>
       </h1>
       <h5 style={{
         fontFamily: "monospace, 'Expletus Sans', Roboto",
@@ -44,20 +45,10 @@ const Popup = () => {
       <Searchbar onSubmit={(inputText) => alert(inputText)} />
 
       <div className="results" style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center', width: '100%', overflowY: 'scroll', height: '100%', marginTop: 20, marginBottom: 50, paddingTop: 20, paddingBottom: 20, borderRadius: 10 }}>
-        <ResultComponent />
-        <ResultComponent />
-        <ResultComponent />
-        <ResultComponent />
-
-        <ResultComponent />
-        <ResultComponent />
-        <ResultComponent />
-
-
-
+        {results.map((item, index) => (
+          <ResultComponent />
+        ))}
       </div>
-
-
     </div >
   );
 };
