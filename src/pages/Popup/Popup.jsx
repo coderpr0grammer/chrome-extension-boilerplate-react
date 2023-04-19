@@ -8,7 +8,6 @@ import ResultComponent from './ResultComponent';
 import Searchbar from './Searchbar';
 
 const Popup = () => {
-
   const [results, setResults] = useState([1, 2, 3, 4, 5, 6]);
   return (
     <div
@@ -18,14 +17,15 @@ const Popup = () => {
         borderRadius: 25,
         borderWidth: 10,
         background: '#282c34',
-        borderImage: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1'
+        borderImage:
+          'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1',
       }}
     >
-
       <h1
         style={{
           fontFamily: "monospace, 'Expletus Sans', Roboto",
-          background: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
+          background:
+            'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           marginBottom: 0,
@@ -34,22 +34,40 @@ const Popup = () => {
       >
         {'{ Skm }'}
       </h1>
-      <h5 style={{
-        fontFamily: "monospace, 'Expletus Sans', Roboto",
-        background: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-      }}>multimodal <strong style={{ textDecoration: 'underline' }}>ai</strong>  ctrl+f</h5>
-
+      <h5
+        style={{
+          fontFamily: "monospace, 'Expletus Sans', Roboto",
+          background:
+            'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        multimodal <strong style={{ textDecoration: 'underline' }}>ai</strong>{' '}
+        ctrl+f
+      </h5>
 
       <Searchbar onSubmit={(inputText) => alert(inputText)} />
 
-      <div className="results" style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center', width: '100%', overflowY: 'scroll', height: '100%', marginTop: 20, marginBottom: 50, paddingTop: 20, paddingBottom: 20, borderRadius: 10 }}>
+      <div
+        className="results"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          overflowY: 'scroll',
+          height: '100%',
+          marginBottom: 50,
+          paddingBottom: 120,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
+      >
         {results.map((item, index) => (
           <ResultComponent />
         ))}
       </div>
-    </div >
+    </div>
   );
 };
 
