@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital@0;1&display=swap');
+
 .App {
   position: absolute;
   top: 0px;
@@ -7,8 +10,7 @@
   text-align: center;
   height: 100%;
   overflow: hidden;
-  padding: 10px;
-  border: none;
+  padding: 10px
 }
 
 
