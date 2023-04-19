@@ -39,10 +39,8 @@ body {
 
 .results::-webkit-scrollbar-thumb {
   background-color: rgb(137, 137, 137);
-  outline: 1px solid rgb(137, 137, 137);
   margin: 10px;
   width: 2px;
-  height: 2px;
   border-radius: 50px;
 }
 

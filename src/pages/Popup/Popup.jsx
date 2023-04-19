@@ -61,6 +61,7 @@ const Popup = () => {
           paddingBottom: 120,
           borderRadius: 10,
           marginTop: 20,
+          paddingRight: 5,
         }}
       >
         {results.map((item, index) => (
