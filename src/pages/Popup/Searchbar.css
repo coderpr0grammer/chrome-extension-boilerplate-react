@@ -1,32 +1,52 @@
-
 .grow-wrap {
-    /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
-    display: grid;
-  }
-  .grow-wrap::after {
-    /* Note the weird space! Needed to preventy jumpy behavior */
-    content: attr(data-replicated-value) " ";
-  
-    /* This is how textarea text behaves */
-    white-space: pre-wrap;
-  
-    /* Hidden from view, clicks, and screen readers */
-    visibility: hidden;
-  }
-  .grow-wrap > textarea {
-    /* You could leave this, but after a user resizes, then it ruins the auto sizing */
-    resize: none;
-  
-    /* Firefox shows scrollbar on growth, you can hide like this. */
-    overflow: hidden;
-  }
-  .grow-wrap > textarea,
-  .grow-wrap::after {
-    /* Identical styling required!! */
-    border: 1px solid black;
-    padding: 0.5rem;
-    font: inherit;
-  
-    /* Place on top of each other */
-    grid-area: 1 / 1 / 2 / 2;
-  }
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+}
+
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+
+.grow-wrap>textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+
+.grow-wrap>textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  border: 1px solid black;
+  padding: 0.5rem;
+  font: inherit;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+
+textarea::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  padding: 10px
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(137, 137, 137);
+  outline: 1px solid rgb(137, 137, 137);
+  margin: 10px;
+  width: 5px;
+  border-radius: 50px;
+}

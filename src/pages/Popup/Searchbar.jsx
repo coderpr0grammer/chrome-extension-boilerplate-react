@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import './Searchbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Searchbar = (props) => {
   const onChangeText = (e) => {
+    setInputText(e.target.value)
     console.log(inputRef.current.scrollHeight);
     inputRef.current.style.height = 'auto';
     inputRef.current.style.height =
@@ -13,29 +16,58 @@ const Searchbar = (props) => {
 
   const [inputText, setInputText] = useState('');
   const inputRef = useRef(null);
+  const containerRef = useRef(null);
+
+  const handle = () => console.log('Enter pressed');
 
   return (
     <>
-      <textarea
-        name="text"
-        id="text"
-        type="text"
-        ref={inputRef}
-        style={{
-          width: '100%',
-          height: 40,
-          resize: 'none',
-          fontSize: 16,
-          background: 'rgba(255,255,255,0.1)',
-          borderRadius: 20,
-          border: 'none',
-          outline: 'none',
-          padding: 5,
-          paddingLeft: 10,
-          boxShadow: 'rgba(0,0,0,0.5) 0px 0px 20px 0px',
-        }}
-        onChange={onChangeText}
-      />
+      <div style={{
+        width: '100%', display: 'flex', flexDirection: 'row', background: 'rgba(255,255,255,0.05)',
+        borderRadius: 20,
+        border: 'none',
+      }}
+        ref={containerRef}
+      >
+        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", justifySelf: 'center', marginLeft: 10, marginTop: 13 }} />
+
+        <textarea
+          name="text"
+          id="text"
+          type="text"
+          ref={inputRef}
+          rows="1"
+          style={{
+            width: '100%',
+            resize: 'none',
+            maxHeight: 200,
+            overflowY: 'auto',
+            padding: 10,
+            fontSize: 16,
+            background: 'transparent',
+            borderRadius: 20,
+            border: 'none',
+            outline: 'none',
+            transition: '1s'
+          }}
+          placeholder="Search for anything."
+          value={inputText}
+          onKeyDown={(e) => {
+            if (e.key == "Enter") {
+              e.preventDefault();
+              props.onSubmit(inputText)
+            }
+          }}
+          onFocus={() => containerRef.current.style.boxShadow = "rgba(0,0,0,0.5) 0px 0px 20px 0px"}
+          onBlur={() => {
+            containerRef.current.style.boxShadow = "rgba(0,0,0,0.0) 0px 0px 20px 0px"
+          }}
+          onChange={onChangeText}
+        />
+
+      </div>
+
+
     </>
   );
 };
