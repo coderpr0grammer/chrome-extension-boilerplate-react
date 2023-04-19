@@ -10,7 +10,8 @@
   text-align: center;
   height: 100%;
   overflow: hidden;
-  padding: 10px
+  padding: 10px;
+
 }
 
 
@@ -43,4 +44,14 @@ body {
   width: 2px;
   height: 2px;
   border-radius: 50px;
+}
+
+.wrapper {
+  border: solid 25px blue;
+  background-color: blue;
+}
+
+.content {
+  border-radius: 10px;
+  background-color: white;
 }

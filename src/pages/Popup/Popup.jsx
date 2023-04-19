@@ -16,8 +16,7 @@ const Popup = () => {
         borderRadius: 25,
         borderWidth: 10,
         background: '#282c34',
-        borderImage:
-          'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1',
+        borderImage: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1'
       }}
     >
 
@@ -27,7 +26,8 @@ const Popup = () => {
           background: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
-          marginBottom: 0
+          marginBottom: 0,
+          fontWeight: 800,
         }}
       >
         {'{ Skm }'}
@@ -38,7 +38,7 @@ const Popup = () => {
         background: 'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
-      }}>multimodal ai  ctrl+f</h5>
+      }}>multimodal <strong style={{ textDecoration: 'underline' }}>ai</strong>  ctrl+f</h5>
 
 
       <Searchbar onSubmit={(inputText) => alert(inputText)} />

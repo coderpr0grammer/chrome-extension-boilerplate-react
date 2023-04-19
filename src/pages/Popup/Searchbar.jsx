@@ -37,6 +37,7 @@ const Searchbar = (props) => {
           type="text"
           ref={inputRef}
           rows="1"
+          autoFocus
           style={{
             width: '100%',
             resize: 'none',

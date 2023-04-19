@@ -1,5 +1,3 @@
-
-
 body {
   margin: 0;
 
@@ -12,4 +10,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.wrapper {
+  border: solid 25px blue;
+  background-color: blue;
+}
+
+.content {
+  border-radius: 10px;
+  background-color: white;
 }
