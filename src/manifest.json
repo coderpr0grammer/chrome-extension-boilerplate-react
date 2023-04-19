@@ -7,19 +7,20 @@
     "service_worker": "background.bundle.js"
   },
   "commands": {
-    "Ctrl+M": {
+    "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+M",
-        "mac": "Command+M"
-      },
-      "description": "Ctrl+M."
+        "default": "Ctrl+Shift+E",
+        "linux": "Ctrl+Shift+K",
+        "windows": "Ctrl+Shift+E",
+        "mac": "Alt+Shift+P"
+      }
     },
-    "Ctrl+L": {
+    "Ctrl+F": {
       "suggested_key": {
-        "default": "Ctrl+L",
-        "mac": "Command+L"
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
       },
-      "description": "Ctrl+L"
+      "description": "Ctrl+Shift+F."
     }
   },
   "action": {

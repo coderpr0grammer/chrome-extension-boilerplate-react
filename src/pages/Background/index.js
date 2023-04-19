@@ -4,7 +4,8 @@ chrome.commands.onCommand.addListener(function (command) {
     if (command === "Ctrl+L") {
         console.log("Ctrl-L successful.");
     }
-    else if (command === "Ctrl+M") {
-        console.log("Ctrl+M successful.");
+    else if (command === "Ctrl+Shift+F") {
+        console.log("Ctrl+Shift+F successful.");
+        chrome.action.openPopup()
     }
 }); 
