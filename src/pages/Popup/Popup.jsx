@@ -13,9 +13,9 @@ const Popup = () => {
     <div
       className="App"
       style={{
-        border: 'solid 10px',
+        border: 'solid 8px',
         borderRadius: 25,
-        borderWidth: 10,
+        borderWidth: 8,
         background: '#282c34',
         borderImage:
           'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1',
