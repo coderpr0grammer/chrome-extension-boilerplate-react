@@ -1,7 +1,19 @@
-import { printLine } from './modules/print';
 
-console.log('Content script works!');
-console.log('Must reload extension for modifications to take effect.');
+const rootElement = document.createElement("div");
+rootElement.id = "react-chrome-app";
 
-printLine("Using the 'printLine' function from the Print Module");
-
+const globalStyles = document.createElement("style");
+globalStyles.innerHTML = `
+  #${rootElement.id} {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 150px;
+  height: 100px;
+  background: red;
+  border-right: 1px solid #c2c2c2;
+  z-index: 999999999;
+  }
+`;
+document.body.appendChild(rootElement);
+document.body.appendChild(globalStyles);

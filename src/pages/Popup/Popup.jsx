@@ -65,7 +65,7 @@ const Popup = () => {
         }}
       >
         {results.map((item, index) => (
-          <ResultComponent />
+          <ResultComponent key={index} />
         ))}
       </div>
     </div>
