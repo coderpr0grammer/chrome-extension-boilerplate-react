@@ -1,0 +1,35 @@
+textarea::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  padding: 10px
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.7);
+  outline: 1px solid rgb(137, 137, 137);
+  margin: 10px;
+  width: 5px;
+  border-radius: 50px;
+}
+
+#text::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.searchbar::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  /* control the spread */
+  transform: translate(0px, 0px);
+  /* control the offsets */
+  z-index: -1;
+  /* place the element behind */
+  background: conic-gradient(from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700);
+  filter: blur(10px);
+  border-radius: 20px;
+  /* control the blur */
+}
