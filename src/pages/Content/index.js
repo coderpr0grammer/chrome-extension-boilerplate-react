@@ -1,19 +1,24 @@
+function waitForElm(selector) {
+  return new Promise((resolve) => {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector));
+    }
 
-const rootElement = document.createElement("div");
-rootElement.id = "react-chrome-app";
+    const observer = new MutationObserver((mutations) => {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector));
+        observer.disconnect();
+      }
+    });
 
-const globalStyles = document.createElement("style");
-globalStyles.innerHTML = `
-  #${rootElement.id} {
-  position: absolute;
-  left: 100px;
-  top: 100px;
-  width: 150px;
-  height: 100px;
-  background: red;
-  border-right: 1px solid #c2c2c2;
-  z-index: 999999999;
-  }
-`;
-document.body.appendChild(rootElement);
-document.body.appendChild(globalStyles);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  });
+}
+
+waitForElm('#secondary').then((elm) => {
+  console.log('Element is ready');
+  console.log(elm.textContent);
+});

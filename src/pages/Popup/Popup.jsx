@@ -9,6 +9,11 @@ import Searchbar from './Searchbar';
 
 const Popup = () => {
   const [results, setResults] = useState([1, 2, 3, 4, 5, 6]);
+  const handleButtonClick = () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'seekTo', time: 30 });
+    });
+  };
   return (
     <div
       className="App"
@@ -21,6 +26,7 @@ const Popup = () => {
           'linear-gradient(to bottom right, #FF914D 0%, #F67B30 50%, #EF2E2E 100%) 1',
       }}
     >
+      <button onClick={handleButtonClick}>Go to 30 seconds</button>
       <h1
         style={{
           fontFamily: "monospace, 'Expletus Sans', Roboto",
