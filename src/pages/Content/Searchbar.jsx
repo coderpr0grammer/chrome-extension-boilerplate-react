@@ -43,7 +43,8 @@ const Searchbar = (props) => {
         border: 'none',
         position: 'relative',
         zIndex: 999999,
-        boxShadow: "rgba(0,0,0,0.5) 0px 0px 20px 0px"
+        boxShadow: "rgba(0,0,0,0.5) 0px 0px 20px 0px",
+        transform: 'translate(215px, 0)'
       }}
         ref={containerRef}
         className="searchbar"
@@ -56,8 +57,20 @@ const Searchbar = (props) => {
           zIndex: 999999,
           boxShadow: "rgba(0,0,0,0.5) 0px 0px 20px 0px"
         }}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "white", justifySelf: 'center', marginLeft: 10, marginTop: 13 }} />
-
+          <button
+            style={{
+              background: 'transparent',
+              padding: 0,
+              border: 'none',
+              display: 'flex',
+              alignItems: 'flex-start'
+            }}
+            onClick={() => {
+              containerRef.current.style.transition = "transform 1s ease-out";
+              containerRef.current.style.transform = "translate(0px, 0px)"
+            }}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "white", justifySelf: 'center', marginLeft: 10, marginTop: 16 }} />
+          </button>
           <textarea
             name="text"
             id="text"
