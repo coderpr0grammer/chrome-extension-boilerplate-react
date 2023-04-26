@@ -10,20 +10,21 @@ const Searchbar = (props) => {
   const [inputText, setInputText] = useState('');
   const inputRef = useRef(null);
   const containerRef = useRef(null);
+  const [extensionActive, setExtensionActive] = useState(false);
 
   const [textareaHeight, setTextareaHeight] = useState('auto');
 
 
   const onChangeText = (e) => {
     setInputText(e.target.value)
-    console.log(inputRef.current.scrollHeight);
+    console.log('scrollheight', inputRef.current.scrollHeight);
     // inputRef.current.style.height = 'auto';
     if (e.target.value == "") {
       setTextareaHeight('auto')
     } else {
       setTextareaHeight(inputRef.current.scrollHeight)
     }
-    console.log(inputRef.current.style.height)
+    console.log('height', inputRef.current.style.height)
     inputRef.current.style.height = inputRef.current.scrollHeight
   };
 
@@ -63,11 +64,22 @@ const Searchbar = (props) => {
               padding: 0,
               border: 'none',
               display: 'flex',
-              alignItems: 'flex-start'
+              alignItems: 'flex-start',
+              cursor: 'pointer',
+              outline: 'none'
             }}
             onClick={() => {
-              containerRef.current.style.transition = "transform 1s ease-out";
-              containerRef.current.style.transform = "translate(0px, 0px)"
+              if (extensionActive) {
+                containerRef.current.style.transition = "transform 1s cubic-bezier(.3,1.29,.99,1.06)";
+                containerRef.current.style.transform = "translate(215px, 0)"
+              } else {
+                containerRef.current.style.transition = "transform 1s cubic-bezier(.3,1.29,.99,1.06)";
+                containerRef.current.style.transform = "translate(0px, 0px)"
+              }
+
+              setExtensionActive(!extensionActive)
+
+
             }}>
             <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "white", justifySelf: 'center', marginLeft: 10, marginTop: 16 }} />
           </button>
@@ -88,7 +100,7 @@ const Searchbar = (props) => {
               fontSize: 16,
               background: 'transparent',
               borderRadius: 20,
-              border: 'none',
+              border: '0px none !important',
               outline: 'none',
               transition: '0.1s',
               color: 'white',
