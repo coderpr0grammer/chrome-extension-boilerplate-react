@@ -16,7 +16,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 #text::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.4) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .searchbar::before {

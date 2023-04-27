@@ -15,7 +15,16 @@ const Popup = () => {
     });
   };
   return (
-    <div id="main-popup-skm" style={{ position: 'fixed', top: 50, right: 50, zIndex: 999999 }}>
+    <div
+      id="main-popup-skm"
+      style={{
+        position: 'fixed',
+        top: 50,
+        right: 50,
+        zIndex: 999999,
+        width: 300,
+      }}
+    >
       <Searchbar />
     </div>
   );
