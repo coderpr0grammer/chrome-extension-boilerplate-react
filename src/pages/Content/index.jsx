@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Popup from './Popup'
 var { Readability, isProbablyReaderable } = require('@mozilla/readability');
+import Mark from "mark.js";
 
 const rootElement = document.createElement("div");
 rootElement.id = "react-chrome-app";
@@ -17,29 +18,13 @@ if (isProbablyReaderable(document)) {
     );
     var documentClone = document.cloneNode(true);
     var article = new Readability(documentClone).parse();
-    // console.log(article.textContent)
+    console.log(article.textContent)
     console.log('is readable')
-    // Define the text to search for
-    const searchText = "Bacteria are ubiquitous";
+    var instance = new Mark(document);
 
-    // Get all the elements on the page
-    const elements = document.querySelectorAll("*");
+    // instance.mark("TA43 was still in commission and available to fight, although she saw little action.[27]", { "accuracy": "complementary", "diacritics": true });
 
-    // Loop through each element and check if it contains the search text
-    let searchQuery = "Bacteria are ubiquitous";
-    let textNodes = document.querySelectorAll("body *");
 
-    for (let i = 0; i < textNodes.length; i++) {
-        let node = textNodes[i];
-        if (node.nodeType === Node.TEXT_NODE) {
-            let searchText = node.textContent;
-            if (searchText.indexOf(searchQuery) !== -1) {
-                // Do something with the text node that contains the search query
-                // node.style.backgroundColor = "yellow";
-                console.log(node)
-            }
-        }
-    }
 } else {
     console.log('not readable')
 

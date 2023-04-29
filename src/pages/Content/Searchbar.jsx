@@ -15,13 +15,17 @@ const Searchbar = (props) => {
     setInputText(e.target.value);
     console.log('scrollheight', inputRef.current.scrollHeight);
     // inputRef.current.style.height = 'auto';
-    if (e.target.value == '') {
-      setTextareaHeight('auto');
-    } else {
-      setTextareaHeight(inputRef.current.scrollHeight);
-    }
+    // if (e.target.value == '') {
+    //   setTextareaHeight('auto');
+    // } else {
+    //   setTextareaHeight(inputRef.current.scrollHeight);
+    // }
+
     console.log('height', inputRef.current.style.height);
     inputRef.current.style.height = inputRef.current.scrollHeight;
+    setTextareaHeight('auto')
+    setTextareaHeight(inputRef.current.scrollHeight)
+
   };
 
   useEffect(() => {
@@ -84,6 +88,7 @@ const Searchbar = (props) => {
                   'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
                 containerRef.current.style.transform = 'translate(300px, 0)';
               } else {
+                inputRef.current.focus()
                 containerRef.current.style.transition =
                   'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
                 containerRef.current.style.transform = 'translate(0px, 0px)';
@@ -96,14 +101,14 @@ const Searchbar = (props) => {
               icon={faMagnifyingGlass}
               size={extensionActive ? 10 : 20}
               style={{
-                width: extensionActive ? 15 : 20,
-                height: extensionActive ? 15 : 20,
+                width: 20,
+                height: 20,
                 color: extensionActive
                   ? 'rgba(255, 255, 255, 0.5)'
                   : 'rgba(255, 255, 255, 0.8)',
                 justifySelf: 'center',
-                marginLeft: extensionActive ? 10 : 5,
-                marginTop: extensionActive ? 15 : 12,
+                marginLeft: extensionActive ? 12 : 10,
+                marginTop: extensionActive ? 13 : 12,
                 transition: '0.5s',
               }}
             />
@@ -142,8 +147,8 @@ const Searchbar = (props) => {
               }
             }}
             onFocus={() =>
-              (containerRef.current.style.boxShadow =
-                'rgba(0,0,0,0.5) 0px 0px 20px 0px')
+            (containerRef.current.style.boxShadow =
+              'rgba(0,0,0,0.5) 0px 0px 20px 0px')
             }
             onBlur={() => {
               // containerRef.current.style.boxShadow = "rgba(0,0,0,0.0) 0px 0px 20px 0px"
