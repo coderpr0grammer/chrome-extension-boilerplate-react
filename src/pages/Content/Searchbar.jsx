@@ -20,8 +20,6 @@ const Searchbar = (props) => {
     } else {
       setTextareaHeight(inputRef.current.scrollHeight);
     }
-    console.log('height', inputRef.current.style.height);
-    inputRef.current.style.height = inputRef.current.scrollHeight;
   };
 
   useEffect(() => {
@@ -120,7 +118,7 @@ const Searchbar = (props) => {
               height: textareaHeight,
               resize: 'none',
               maxHeight: 200,
-              overflowY: 'auto',
+              overflowY: 'hidden',
               padding: 10,
               fontSize: 16,
               background: 'transparent',
