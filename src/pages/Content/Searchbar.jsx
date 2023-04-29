@@ -119,7 +119,7 @@ const Searchbar = (props) => {
               height: textareaHeight,
               resize: 'none',
               maxHeight: 200,
-              overflowY: 'hidden',
+              overflowY: 'auto',
               padding: 10,
               fontSize: 16,
               background: 'transparent',
