@@ -6,6 +6,8 @@ import './Popup.css';
 // import image from '../../assets/img/icon-128.png';
 // import ResultComponent from './ResultComponent';
 import Searchbar from './Searchbar';
+import Mark from "mark.js";
+
 
 const Popup = () => {
   const [results, setResults] = useState([1, 2, 3, 4, 5, 6]);
@@ -25,7 +27,33 @@ const Popup = () => {
         width: 300,
       }}
     >
-      <Searchbar />
+      <Searchbar onSubmit={(query) => {
+
+        // var instance = new Mark(document);
+
+        // const options = {
+        //   accuracy: "exactly",
+        //   diacritics: true,
+        //   wildcards: {
+        //     enabled: true,
+        //     key: tag => tag.matches("a, span") // Match text within <a> and <span> tags
+        //   },
+        //   separateWordSearch: false
+        // };
+
+
+        // instance.mark(query, options);
+        function windowFind(str) {
+          if ("find" in window) {
+            return window.find(str, false, false, true);
+          } else {
+            return document.getElementsByTagName("body").innerHTML.indexOf(str) > -1;
+          }
+        }
+
+        console.log(windowFind(query))
+
+      }} />
     </div>
   );
 };

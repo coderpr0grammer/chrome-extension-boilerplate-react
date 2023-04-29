@@ -82,6 +82,7 @@ const Searchbar = (props) => {
                   'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
                 containerRef.current.style.transform = 'translate(300px, 0)';
               } else {
+                inputRef.current.focus();
                 containerRef.current.style.transition =
                   'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
                 containerRef.current.style.transform = 'translate(0px, 0px)';
@@ -94,14 +95,14 @@ const Searchbar = (props) => {
               icon={faMagnifyingGlass}
               size={extensionActive ? 10 : 20}
               style={{
-                width: extensionActive ? 15 : 20,
-                height: extensionActive ? 15 : 20,
+                width: 20,
+                height: 20,
                 color: extensionActive
                   ? 'rgba(255, 255, 255, 0.5)'
                   : 'rgba(255, 255, 255, 0.8)',
                 justifySelf: 'center',
-                marginLeft: extensionActive ? 10 : 5,
-                marginTop: extensionActive ? 15 : 12,
+                marginLeft: extensionActive ? 12 : 10,
+                marginTop: extensionActive ? 13 : 12,
                 transition: '0.5s',
               }}
             />
