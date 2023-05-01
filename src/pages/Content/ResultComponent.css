@@ -1,16 +1,22 @@
 .responseComponent:hover {
-    box-shadow: rgba(245, 163, 83,.8) 0px 2px 20px 0px;
+    /* box-shadow: rgba(245, 163, 83, .8) 0px 2px 20px 0px; */
     cursor: pointer;
 }
 
+.responseComponent.show {
+    opacity: 1;
+}
+
 .responseComponent {
-    box-shadow:rgba(245, 163, 83,.8) 0px 2px 20px 0px;
-    transition: 0.2s;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    box-shadow: rgba(245, 163, 83, .8) 0px 2px 20px 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 20px;
 }
+
 /*
 .responseComponent::before {
     content: "";

@@ -8,11 +8,16 @@ import './Popup.css';
 import Searchbar from './Searchbar';
 import Mark from 'mark.js';
 import ResultComponent from './ResultComponent';
+import './Searchbar.css'
+import LoadingIcon from './LoadingIcon.js';
 
 const Popup = () => {
   const [results, setResults] = useState([]);
   const [extensionActive, setExtensionActive] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(false);
   const extensionContainerRef = useRef(null);
+
 
   const handleButtonClick = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -34,7 +39,10 @@ const Popup = () => {
       ref={extensionContainerRef}
     >
       <Searchbar
+        loading={loading}
         onSubmit={(query) => {
+          setLoading(true);
+          setShowResults(false)
           // var instance = new Mark(document);
 
           // const options = {
@@ -60,8 +68,19 @@ const Popup = () => {
           }
 
           setResults([1, 2, 3]);
-
           console.log(windowFind(query));
+
+
+
+          setTimeout(() => {
+            setShowResults(true)
+
+            setLoading(false)
+
+
+          }, 3000);
+
+
         }}
         active={extensionActive}
         onToggleActive={() => {
@@ -81,7 +100,11 @@ const Popup = () => {
       />
 
       {results.map((item, index) => (
-        <ResultComponent />
+        <ResultComponent
+          key={index}
+          style={{ transitionDelay: `${(index + 1) * 0.2}s` }}
+          className={`${showResults ? 'show' : ''}`}
+        />
       ))}
     </div>
   );

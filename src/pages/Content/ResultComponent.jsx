@@ -1,7 +1,7 @@
 import React from 'react';
 import './ResultComponent.css';
 
-const ResultComponent = () => {
+const ResultComponent = (props) => {
   return (
     <div
       style={{
@@ -9,8 +9,9 @@ const ResultComponent = () => {
         background: '#F8F9F9',
         minHeight: 100,
         borderRadius: 10,
+        ...props.style
       }}
-      className="responseComponent"
+      className={`responseComponent ${props.className}`}
     >
       <div className="text1 text-skeleton"></div>
       <div className="text2 text-skeleton"></div>
