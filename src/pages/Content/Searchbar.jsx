@@ -45,7 +45,7 @@ const Searchbar = (props) => {
           position: 'relative',
           zIndex: 999999,
           boxShadow: 'rgba(0,0,0,0.5) 0px 0px 20px 0px',
-          transform: 'translate(300px, 0)',
+          marginBottom: 20,
         }}
         ref={containerRef}
         className="searchbar"
@@ -77,18 +77,10 @@ const Searchbar = (props) => {
               width: extensionActive ? 'auto' : 60,
             }}
             onClick={() => {
-              if (extensionActive) {
-                containerRef.current.style.transition =
-                  'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
-                containerRef.current.style.transform = 'translate(300px, 0)';
-              } else {
+              if (!props.active) {
                 inputRef.current.focus();
-                containerRef.current.style.transition =
-                  'transform 1s cubic-bezier(.3,1.29,.99,1.06)';
-                containerRef.current.style.transform = 'translate(0px, 0px)';
               }
-
-              setExtensionActive(!extensionActive);
+              props.onToggleActive();
             }}
           >
             <FontAwesomeIcon

@@ -6,16 +6,15 @@ const ResultComponent = () => {
     <div
       style={{
         width: '100%',
-        background: 'rgba(255, 255, 255, 0.05)',
+        background: 'rgba(0,0,0,1)',
         minHeight: 100,
         borderRadius: 10,
-        marginBottom: 20,
       }}
       className="responseComponent"
     >
-      <div className="text1"></div>
-      <div className="text2"></div>
-      <div className="text3"></div>
+      <div className="text1 text-skeleton"></div>
+      <div className="text2 text-skeleton"></div>
+      <div className="text3 text-skeleton"></div>
     </div>
   );
 };
