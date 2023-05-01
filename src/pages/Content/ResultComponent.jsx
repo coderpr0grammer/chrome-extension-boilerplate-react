@@ -6,7 +6,7 @@ const ResultComponent = () => {
     <div
       style={{
         width: '100%',
-        background: 'rgba(0,0,0,1)',
+        background: '#F8F9F9',
         minHeight: 100,
         borderRadius: 10,
       }}

@@ -1,10 +1,10 @@
 .responseComponent:hover {
-    box-shadow: rgba(0, 2, 0, 0.2) 0px 2px 5px 0px;
+    box-shadow: rgba(245, 163, 83,.8) 0px 2px 20px 0px;
     cursor: pointer;
 }
 
 .responseComponent {
-    box-shadow: rgba(0, 2, 0, 0.8) 0px 2px 20px 0px;
+    box-shadow:rgba(245, 163, 83,.8) 0px 2px 20px 0px;
     transition: 0.2s;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
   */
 
 .text-skeleton {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     position: relative;
     height: 15px;
     border-radius: 20px;
@@ -53,20 +53,20 @@
 
 @keyframes fadeSkeleton {
     0% {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
     100% {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(0, 0, 0, 0.3);
     }
 }
 
 @keyframes fadeSkeleton2 {
     0% {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
     100% {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(0, 0, 0, 0.2);
     }
 }
