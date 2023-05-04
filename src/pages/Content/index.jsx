@@ -8,7 +8,7 @@ var { Readability, isProbablyReaderable } = require('@mozilla/readability');
 const rootElement = document.createElement('div');
 rootElement.id = 'react-chrome-app';
 
-console.log(window.location)
+console.log(window.location);
 document.body.appendChild(rootElement);
 
 if (isProbablyReaderable(document)) {
@@ -34,26 +34,44 @@ if (isProbablyReaderable(document)) {
   console.log('not readable');
 }
 
+if (
+  window.location.hostname === 'www.youtube.com' &&
+  window.location.pathname === '/watch'
+) {
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        // Look for the #secondary div
+        const secondary = document.getElementById('secondary');
+        if (secondary) {
+          // The #secondary div is now available, inject your content script
+          const div = document.createElement('div');
+          div.id = 'my-extension-root';
+          div.classList.remove('hidden');
+          div.style.display = 'block';
 
-if (window.location.hostname === "www.youtube.com" && window.location.pathname === "/watch") {
-  console.log('on youtube')
-  const div = document.createElement('div');
-  div.id = 'my-extension-root';
-  const secondary = document.querySelector("#secondary");
-  div.classList.remove('hidden')
-  div.style.display = "block"
+          secondary.insertBefore(div, secondary.firstChild);
 
+          const root = ReactDOM.createRoot(div);
+          root.render(
+            <React.StrictMode>
+              <Youtube />
+            </React.StrictMode>
+          );
 
-  secondary.insertBefore(div, secondary.firstChild);
+          // Stop observing mutations after the first injection
+          observer.disconnect();
+          break;
+        }
+      }
+    }
+  });
 
-  const root = ReactDOM.createRoot(div);
-  root.render(
-    <React.StrictMode>
-      <Youtube />
-    </React.StrictMode>
-  );
-  // you are on a YouTube video page
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 } else {
-  console.log('not on youtube')
+  console.log('not on youtube');
   // you are not on a YouTube video page
 }

@@ -15,6 +15,7 @@ const Searchbar = (props) => {
   const onChangeText = (e) => {
     setInputText(e.target.value);
     console.log('scrollheight', inputRef.current.scrollHeight);
+
     // inputRef.current.style.height = 'auto';
     if (e.target.value == '') {
       setTextareaHeight('auto');
@@ -37,7 +38,7 @@ const Searchbar = (props) => {
       <div
         style={{
           width: '100%',
-          maxWidth: 300,
+          maxWidth: '100%',
           display: 'flex',
           flexDirection: 'row',
           background: 'white',
@@ -55,7 +56,7 @@ const Searchbar = (props) => {
           style={{
             background: 'rgba(255,255,255,0.3)',
             width: '100%',
-            maxWidth: 300,
+            maxWidth: '100%',
             display: 'flex',
             flexDirection: 'row',
             borderRadius: 20,
@@ -72,21 +73,23 @@ const Searchbar = (props) => {
               border: 'none',
               display: 'flex',
               alignItems: 'flex-start',
-              cursor: 'pointer',
+              // cursor: 'pointer',
               outline: 'none',
               justifyContent: 'center',
               width: props.active ? 35 : 60,
             }}
-            onClick={() => {
-              if (!props.active) {
-                inputRef.current.focus();
-              }
-              props.onToggleActive();
-            }}
+            // onClick={() => {
+            //   if (!props.active) {
+            //     inputRef.current.focus();
+            //   }
+            //   props.onToggleActive();
+            // }}
           >
-            {props.loading ?
-              (<div style={{ marginLeft: 5, marginTop: 3 }}><LoadingIcon /></div>)
-              :
+            {props.loading ? (
+              <div style={{ marginLeft: 5, marginTop: 3 }}>
+                <LoadingIcon />
+              </div>
+            ) : (
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 size={props.active ? 20 : 20}
@@ -102,8 +105,7 @@ const Searchbar = (props) => {
                   transition: '1s',
                 }}
               />
-            }
-
+            )}
           </button>
           <textarea
             name="text"
@@ -140,8 +142,8 @@ const Searchbar = (props) => {
               }
             }}
             onFocus={() =>
-            (containerRef.current.style.boxShadow =
-              'rgba(0,0,0,0.5) 0px 0px 20px 0px')
+              (containerRef.current.style.boxShadow =
+                'rgba(0,0,0,0.5) 0px 0px 20px 0px')
             }
             onBlur={() => {
               // containerRef.current.style.boxShadow = "rgba(0,0,0,0.0) 0px 0px 20px 0px"

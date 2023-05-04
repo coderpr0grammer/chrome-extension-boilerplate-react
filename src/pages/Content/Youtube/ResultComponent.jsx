@@ -6,10 +6,10 @@ const ResultComponent = (props) => {
     <div
       style={{
         width: '100%',
-        background: '#F8F9F9',
+        background: props.dark ? '#F8F9F9' : '#1C1C1C',
         minHeight: 100,
         borderRadius: 10,
-        ...props.style
+        ...props.style,
       }}
       className={`responseComponent ${props.className}`}
     >
