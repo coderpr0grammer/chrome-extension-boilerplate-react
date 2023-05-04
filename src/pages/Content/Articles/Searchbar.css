@@ -1,21 +1,23 @@
-textarea::-webkit-scrollbar {
-  width: 0.2em;
+#skm-textarea::-webkit-scrollbar {
+  width: 2px;
+  display: none;
 }
 
 textarea::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  padding: 10px
+  padding: 2px
 }
 
 textarea::-webkit-scrollbar-thumb {
+
   background-color: rgba(230, 91, 104, 0.7);
   outline: 1px solid rgb(230, 91, 104, 0.7);
-  margin: 10px;
-  width: 5px;
+  margin: 0px;
+  width: 2px;
   border-radius: 50px;
 }
 
-#text::-webkit-input-placeholder {
+#skm-textarea::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 

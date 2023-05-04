@@ -107,17 +107,20 @@ const Searchbar = (props) => {
           </button>
           <textarea
             name="text"
-            id="text"
+            id="skm-textarea"
             type="text"
             ref={inputRef}
             rows="1"
             autoFocus
             style={{
               width: '100%',
-              height: textareaHeight,
+              height: 45,
+              boxSizing: 'border-box',
               resize: 'none',
               maxHeight: 200,
-              overflowY: 'auto',
+              whiteSpace: 'nowrap',
+              overflowX: 'scroll',/* or hidden */
+              overflowY: 'hidden',
               padding: 10,
               paddingLeft: 5,
               fontSize: 16,
