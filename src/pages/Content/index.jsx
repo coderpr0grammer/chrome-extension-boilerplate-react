@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
+// import { YoutubeTranscript } from 'youtube-transcript';
+// import { YoutubeTranscript } from 'youtube-transcript';
 var { Readability, isProbablyReaderable } = require('@mozilla/readability');
+
 // import Mark from 'mark.js';
 
 const rootElement = document.createElement('div');
@@ -72,19 +75,7 @@ if (
     subtree: true,
   });
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const videoId = urlParams.get('v');
-
-  fetch(`https://www.youtube.com/api/timedtext?lang=en&v=${videoId}`)
-    .then(response => response.text())
-    .then(data => {
-      console.log('transcript: ', data)
-      // parse the transcript from the response
-    })
-    .catch(error => {
-      console.log('error getting transcript', error)
-      // handle error
-    });
+  // YoutubeTranscript.fetchTranscript('jvGnw1sHh9M').then(console.log);
 } else {
   console.log('not on youtube');
   // you are not on a YouTube video page
