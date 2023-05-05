@@ -6,7 +6,6 @@ import './Youtube.css';
 // import image from '../../assets/img/icon-128.png';
 // import ResultComponent from './ResultComponent';
 import Searchbar from './Searchbar';
-import Mark from 'mark.js';
 import ResultComponent from './ResultComponent';
 import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
@@ -20,27 +19,21 @@ const Youtube = () => {
   const [globalQuery, setGlobalQuery] = useState;
   const extensionContainerRef = useRef(null);
 
-  const handleButtonClick = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'seekTo', time: 30 });
-    });
-  };
+  // useEffect(() => {
+  //   if (
+  //     window.matchMedia &&
+  //     window.matchMedia('(prefers-color-scheme: dark)').matches
+  //   ) {
+  //     // The user has requested a dark color scheme
+  //     setDark(true);
+  //     console.log('Dark mode enabled');
+  //   } else {
+  //     // The user has requested a light color scheme
+  //     setDark(false);
 
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      // The user has requested a dark color scheme
-      setDark(true);
-      console.log('Dark mode enabled');
-    } else {
-      // The user has requested a light color scheme
-      setDark(false);
-
-      console.log('Light mode enabled');
-    }
-  }, []);
+  //     console.log('Light mode enabled');
+  //   }
+  // }, []);
 
   return (
     <div
@@ -53,35 +46,12 @@ const Youtube = () => {
       }}
       ref={extensionContainerRef}
     >
-      <Searchbar
+      {/* <Searchbar
         loading={loading}
         onSubmit={(query) => {
           setGlobalQuery(query);
           setLoading(true);
           setShowResults(false);
-          // var instance = new Mark(document);
-
-          // const options = {
-          //   accuracy: "exactly",
-          //   diacritics: true,
-          //   wildcards: {
-          //     enabled: true,
-          //     key: tag => tag.matches("a, span") // Match text within <a> and <span> tags
-          //   },
-          //   separateWordSearch: false
-          // };
-
-          // instance.mark(query, options);
-          // function windowFind(str) {
-          //   if ('find' in window) {
-          //     return window.find(str, false, false, true);
-          //   } else {
-          //     return (
-          //       document.getElementsByTagName('body').innerHTML.indexOf(str) >
-          //       -1
-          //     );
-          //   }
-          // }
 
           var url = window.location.href;
           console.log('url: ', url);
@@ -123,8 +93,6 @@ const Youtube = () => {
               alert(error);
             });
 
-          // console.log(windowFind(query));
-
           setLoading(false);
           setTimeout(() => setShowResults(true), 500);
         }}
@@ -141,7 +109,7 @@ const Youtube = () => {
             style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
             className={`${showResults ? 'show' : ''}`}
           />
-        ))}
+        ))} */}
     </div>
   );
 };

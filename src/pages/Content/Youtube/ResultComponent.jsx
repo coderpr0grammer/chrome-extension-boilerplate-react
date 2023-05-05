@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import videojs from 'video.js';
 import './ResultComponent.css';
 
 const ResultComponent = (props) => {
