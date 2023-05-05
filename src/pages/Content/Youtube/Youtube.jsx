@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 // import logo from '../../assets/img/logo.svg';
 // import Greetings from '../../containers/Greetings/Greetings';
 import './Youtube.css';
@@ -25,19 +25,21 @@ const Youtube = () => {
     });
   };
 
-  //   if (
-  //     window.matchMedia &&
-  //     window.matchMedia('(prefers-color-scheme: dark)').matches
-  //   ) {
-  //     // The user has requested a dark color scheme
-  //     setDark(true);
-  //     console.log('Dark mode enabled');
-  //   } else {
-  //     // The user has requested a light color scheme
-  //     setDark(false);
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // The user has requested a dark color scheme
+      setDark(true);
+      console.log('Dark mode enabled');
+    } else {
+      // The user has requested a light color scheme
+      setDark(false);
 
-  //     console.log('Light mode enabled');
-  //   }
+      console.log('Light mode enabled');
+    }
+  }, []);
 
   return (
     <div
@@ -68,35 +70,75 @@ const Youtube = () => {
           // };
 
           // instance.mark(query, options);
-          function windowFind(str) {
-            if ('find' in window) {
-              return window.find(str, false, false, true);
-            } else {
-              return (
-                document.getElementsByTagName('body').innerHTML.indexOf(str) >
-                -1
-              );
+          // function windowFind(str) {
+          //   if ('find' in window) {
+          //     return window.find(str, false, false, true);
+          //   } else {
+          //     return (
+          //       document.getElementsByTagName('body').innerHTML.indexOf(str) >
+          //       -1
+          //     );
+          //   }
+          // }
+
+          var url = window.location.href;
+          console.log('url: ', url);
+
+          let parts = url.split('v=');
+          let thepart = parts[1].split('&t=');
+
+          var videoId = thepart[0].split('&ab_channel')[0];
+
+          let json = { youtube_url: url, query: query };
+
+          fetch(
+            'https://pacific-woodland-70260.herokuapp.com/process_youtube_url',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(json),
             }
-          }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (data == 'TranscriptError') {
+                alert('Subtitles not avaiable or video is restricted');
+              } else if (data == 'LengthError') {
+                alert(
+                  'For our beta version, videos cannot be more than 3 hours'
+                );
+              } else if (data == 'ApiError') {
+                alert('Invalid request');
+              } else {
+                console.log(data.results.matches);
+                setResults(data.results.matches);
+                console.log(data);
+              }
+            })
+            .catch(function (error) {
+              alert(error);
+            });
 
-          setResults([1, 2, 3]);
-          console.log(windowFind(query));
+          // console.log(windowFind(query));
 
-          setTimeout(() => {
-            setShowResults(true);
-
-            setLoading(false);
-          }, 3000);
+          setShowResults(true);
+          setLoading(false);
         }}
       />
 
-      {results.map((item, index) => (
-        <ResultComponent
-          key={index}
-          style={{ transitionDelay: `${(index + 1) * 0.2}s` }}
-          className={`${showResults ? 'show' : ''}`}
-        />
-      ))}
+      {results &&
+        results.map((item, index) => (
+          <ResultComponent
+            content={item.metadata.text}
+            timeStampURL={item.metadata.url}
+            key={index}
+            dark={dark}
+            style={{ transitionDelay: `${(index + 1) * 0.2}s` }}
+            className={`${showResults ? 'show' : ''}`}
+          />
+        ))}
     </div>
   );
 };

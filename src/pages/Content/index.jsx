@@ -75,7 +75,17 @@ if (
     subtree: true,
   });
 
-  // YoutubeTranscript.fetchTranscript('jvGnw1sHh9M').then(console.log);
+  // chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  //   if (message.action === 'seekTo') {
+  //     const player = document.querySelector('video');
+  //     if (player) {
+  //       player.currentTime = message.time;
+  //       sendResponse({ success: true });
+  //     } else {
+  //       sendResponse({ success: false, message: 'Video player not found' });
+  //     }
+  //   }
+  // });
 } else {
   console.log('not on youtube');
   // you are not on a YouTube video page

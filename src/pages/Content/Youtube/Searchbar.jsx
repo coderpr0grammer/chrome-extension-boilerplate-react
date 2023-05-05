@@ -37,7 +37,6 @@ const Searchbar = (props) => {
       <div
         style={{
           width: '100%',
-          maxWidth: 300,
           display: 'flex',
           flexDirection: 'row',
           background: 'white',
@@ -55,7 +54,6 @@ const Searchbar = (props) => {
           style={{
             background: 'rgba(255,255,255,0.3)',
             width: '100%',
-            maxWidth: 300,
             display: 'flex',
             flexDirection: 'row',
             borderRadius: 20,
@@ -84,9 +82,11 @@ const Searchbar = (props) => {
               props.onToggleActive();
             }}
           >
-            {props.loading ?
-              (<div style={{ marginLeft: 5, marginTop: 3 }}><LoadingIcon /></div>)
-              :
+            {props.loading ? (
+              <div style={{ marginLeft: 5, marginTop: 3 }}>
+                <LoadingIcon />
+              </div>
+            ) : (
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 size={props.active ? 20 : 20}
@@ -102,8 +102,7 @@ const Searchbar = (props) => {
                   transition: '1s',
                 }}
               />
-            }
-
+            )}
           </button>
           <textarea
             name="text"
@@ -119,7 +118,7 @@ const Searchbar = (props) => {
               resize: 'none',
               maxHeight: 200,
               whiteSpace: 'nowrap',
-              overflowX: 'scroll',/* or hidden */
+              overflowX: 'scroll' /* or hidden */,
               overflowY: 'hidden',
               padding: 10,
               paddingLeft: 5,
@@ -136,18 +135,12 @@ const Searchbar = (props) => {
             onKeyDown={(e) => {
               console.log(e.key);
               if (e.key == 'Enter') {
+                if (props.loading) return;
                 e.preventDefault();
                 props.onSubmit(inputText);
               } else if (e.key === 'Backspace') {
                 setTextareaHeight('auto');
               }
-            }}
-            onFocus={() =>
-            (containerRef.current.style.boxShadow =
-              'rgba(0,0,0,0.5) 0px 0px 20px 0px')
-            }
-            onBlur={() => {
-              // containerRef.current.style.boxShadow = "rgba(0,0,0,0.0) 0px 0px 20px 0px"
             }}
             onChange={onChangeText}
           />
