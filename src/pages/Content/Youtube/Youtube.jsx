@@ -17,6 +17,7 @@ const Youtube = () => {
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
+  const [globalQuery, setGlobalQuery] = useState;
   const extensionContainerRef = useRef(null);
 
   const handleButtonClick = () => {
@@ -55,6 +56,7 @@ const Youtube = () => {
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
+          setGlobalQuery(query);
           setLoading(true);
           setShowResults(false);
           // var instance = new Mark(document);
@@ -123,8 +125,8 @@ const Youtube = () => {
 
           // console.log(windowFind(query));
 
-          setShowResults(true);
           setLoading(false);
+          setTimeout(() => setShowResults(true), 500);
         }}
       />
 
@@ -135,7 +137,8 @@ const Youtube = () => {
             timeStampURL={item.metadata.url}
             key={index}
             dark={dark}
-            style={{ transitionDelay: `${(index + 1) * 0.2}s` }}
+            query={globalQuery}
+            style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
             className={`${showResults ? 'show' : ''}`}
           />
         ))}
