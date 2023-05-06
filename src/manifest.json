@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "permissions": ["activeTab", "https://www.youtube.com/*"],
+  "permissions": ["activeTab"],
   "name": "Skm: Skim through videos instantly",
   "description": "Find the clips you want by just searching using our powerful AI video search engine",
   "options_page": "options.html",
@@ -33,7 +33,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>", "https://www.youtube.com/watch?v=*"],
+      "matches": ["https://www.youtube.com/watch?v=*"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"],
       "run_at": "document_end"
