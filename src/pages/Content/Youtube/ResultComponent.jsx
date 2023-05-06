@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './ResultComponent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const ResultComponent = (props) => {
   console.log(props.dark);
@@ -15,6 +17,29 @@ const ResultComponent = (props) => {
     }
     return null;
   }
+
+  const boldenWordInString = (words, paragraph) => {
+    let output = '';
+    paragraph.split(' ').map((word) => {
+      let match = false;
+      // console.log(word)
+      words.forEach((wordQuery) => {
+        // console.log(wordQuery)
+        if (word.toLowerCase() == wordQuery.toLowerCase()) {
+          output += `<strong>${word}</strong> `;
+          match = true;
+        }
+      });
+      if (match == false) {
+        output += word + ' ';
+      }
+    });
+    return output;
+  };
+
+  // console.log(props.query.split(' '));
+
+  // console.log(boldenWordInString(props.query.split(' '), props.content));
 
   const handleVideoLoad = () => {
     // console.log((document.querySelector('video').currentTime = 30));
@@ -65,9 +90,23 @@ const ResultComponent = (props) => {
       className={`responseComponent ${props.className}`}
       onClick={handleButtonClick}
     >
-      <p style={{ color: props.dark ? 'white' : 'black' }}>
-        ...{props.content}...
-      </p>
+      <div style={{ display: 'inline' }}>
+        <div className="playButton">
+          <FontAwesomeIcon
+            icon={faPlay}
+            style={{ color: 'inherit', width: 8, height: 8 }}
+          />
+        </div>
+        <p
+          style={{ color: props.dark ? 'white' : 'black', display: 'inline' }}
+          dangerouslySetInnerHTML={{
+            __html:
+              '...' +
+              boldenWordInString(props.query.split(' '), props.content) +
+              '...',
+          }}
+        ></p>
+      </div>
     </div>
   );
 };

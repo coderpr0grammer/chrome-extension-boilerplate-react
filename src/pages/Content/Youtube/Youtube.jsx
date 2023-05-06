@@ -6,6 +6,7 @@ import './Youtube.css';
 // import image from '../../assets/img/icon-128.png';
 // import ResultComponent from './ResultComponent';
 import Searchbar from './Searchbar';
+import Mark from 'mark.js';
 import ResultComponent from './ResultComponent';
 import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
@@ -16,24 +17,30 @@ const Youtube = () => {
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
-  const [globalQuery, setGlobalQuery] = useState;
+  const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (
-  //     window.matchMedia &&
-  //     window.matchMedia('(prefers-color-scheme: dark)').matches
-  //   ) {
-  //     // The user has requested a dark color scheme
-  //     setDark(true);
-  //     console.log('Dark mode enabled');
-  //   } else {
-  //     // The user has requested a light color scheme
-  //     setDark(false);
+  const handleButtonClick = () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'seekTo', time: 30 });
+    });
+  };
 
-  //     console.log('Light mode enabled');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // The user has requested a dark color scheme
+      setDark(true);
+      console.log('Dark mode enabled');
+    } else {
+      // The user has requested a light color scheme
+      setDark(false);
+
+      console.log('Light mode enabled');
+    }
+  }, []);
 
   return (
     <div
@@ -41,12 +48,11 @@ const Youtube = () => {
       style={{
         top: 50,
         right: 50,
-        zIndex: 999999,
         width: '100%',
       }}
       ref={extensionContainerRef}
     >
-      {/* <Searchbar
+      <Searchbar
         loading={loading}
         onSubmit={(query) => {
           setGlobalQuery(query);
@@ -87,14 +93,21 @@ const Youtube = () => {
                 console.log(data.results.matches);
                 setResults(data.results.matches);
                 console.log(data);
+                setTimeout(() => {
+                  setLoading(false);
+
+                  setShowResults(true);
+                }, 600);
               }
+
+              setLoading(false);
             })
             .catch(function (error) {
               alert(error);
+              setLoading(false);
             });
 
-          setLoading(false);
-          setTimeout(() => setShowResults(true), 500);
+          // console.log(windowFind(query));
         }}
       />
 
@@ -103,13 +116,13 @@ const Youtube = () => {
           <ResultComponent
             content={item.metadata.text}
             timeStampURL={item.metadata.url}
+            query={globalQuery}
             key={index}
             dark={dark}
-            query={globalQuery}
             style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
             className={`${showResults ? 'show' : ''}`}
           />
-        ))} */}
+        ))}
     </div>
   );
 };

@@ -32,6 +32,10 @@ const Searchbar = (props) => {
 
   const handle = () => console.log('Enter pressed');
 
+  useEffect(() => {
+    console.log(props.loading);
+  }, [props.loading]);
+
   return (
     <>
       <div
@@ -43,7 +47,7 @@ const Searchbar = (props) => {
           borderRadius: 20,
           border: 'none',
           position: 'relative',
-          zIndex: 999999,
+          zIndex: 1,
           boxShadow: 'rgba(0,0,0,0.5) 0px 0px 20px 0px',
           marginBottom: 20,
         }}
@@ -59,7 +63,7 @@ const Searchbar = (props) => {
             borderRadius: 20,
             border: 'none',
             position: 'relative',
-            zIndex: 999999,
+            zIndex: 1,
             boxShadow: 'rgba(0,0,0,0.5) 0px 0px 20px 0px',
           }}
         >
@@ -135,7 +139,6 @@ const Searchbar = (props) => {
             onKeyDown={(e) => {
               console.log(e.key);
               if (e.key == 'Enter') {
-                if (props.loading) return;
                 e.preventDefault();
                 props.onSubmit(inputText);
               } else if (e.key === 'Backspace') {

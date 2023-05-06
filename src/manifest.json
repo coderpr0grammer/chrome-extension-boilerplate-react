@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "https://www.youtube.com/*"],
   "name": "Skm: Skim through videos instantly",
   "description": "Find the clips you want by just searching using our powerful AI video search engine",
   "options_page": "options.html",
