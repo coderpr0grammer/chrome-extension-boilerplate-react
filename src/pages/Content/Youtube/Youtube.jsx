@@ -79,7 +79,12 @@ const Youtube = () => {
               body: JSON.stringify(json),
             }
           )
-            .then((response) => response.json())
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok. Internal server error!');
+              }
+              return response.json();
+            })
             .then((data) => {
               if (data == 'TranscriptError') {
                 alert('Subtitles not avaiable or video is restricted');
@@ -103,8 +108,9 @@ const Youtube = () => {
               setLoading(false);
             })
             .catch(function (error) {
-              alert(error);
               setLoading(false);
+              console.log('error: ', error)
+              alert(error);
             });
 
           // console.log(windowFind(query));
