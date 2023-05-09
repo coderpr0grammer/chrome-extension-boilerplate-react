@@ -7,6 +7,7 @@
   "background": {
     "service_worker": "background.bundle.js"
   },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlfvkWAy8qiDyN9Jd5lERsYP9p1OmXaYI9V+b7fDW11oQrcfBPFdF3LmgiUm7hTUbP4OAyecvT6wvji/tqONaAjgBzNwapXTeUm4wsLBbeaJbzj0nR1q11jsBiUfzzvIbSdXbDSqAJY83zKfr01NFH1pjhJOJSbtIj6qRZF/RmY1+gnuurL/yTWNvfpTHbw/utiRA1Z5f6yma3Hi2bEwxoaRasAAUPZ++RD7YWEkS09cFKDs3sfalxB+jgehz+7TG52Fw2bEcNbDWtW21gHqgZ2th+2MpdvvRrt19b2YH/xEax67JLjmdO+nLsTyrJuIBd9nPLrUtJgFT0Jo3+r8qRQIDAQAB",
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
