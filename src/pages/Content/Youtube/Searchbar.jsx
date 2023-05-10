@@ -134,7 +134,7 @@ const Searchbar = (props) => {
               transition: '0.1s',
               color: 'white',
             }}
-            placeholder="Skim this page"
+            placeholder="Skim this video"
             value={inputText}
             onKeyDown={(e) => {
               console.log(e.key);
