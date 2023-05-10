@@ -80,7 +80,7 @@ const ResultComponent = (props) => {
     <div
       style={{
         width: '100%',
-        background: props.dark ? '#1C1C1C' : '#F8F9F9',
+        background: 'transparent',
         minHeight: 100,
         borderRadius: 10,
         boxSizing: 'border-box',
