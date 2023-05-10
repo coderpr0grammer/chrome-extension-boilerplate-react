@@ -12,6 +12,8 @@ import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
 import { GoogleLogin } from '@react-oauth/google';
 
+
+
 const Youtube = () => {
   const [results, setResults] = useState([]);
   const [extensionActive, setExtensionActive] = useState(false);
@@ -20,6 +22,27 @@ const Youtube = () => {
   const [dark, setDark] = useState(false);
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
+
+  // const divRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (divRef.current) {
+  //     console.log(window.google)
+  //     window.google.accounts.id.initialize({
+  //       client_id: '79132329678-6gdji4k1kjtm14e12tjng48p55m767se.apps.googleusercontent.com',
+  //       callback: (res, error) => {
+  //         // This is the function that will be executed once the authentication with google is finished
+  //       },
+  //     });
+  //     window.google.accounts.id.renderButton(divRef.current, {
+  //       theme: 'filled_blue',
+  //       size: 'medium',
+  //       type: 'standard',
+  //       text: 'continue_with',
+  //     });
+  //   }
+  // }, [divRef.current]);
+
 
   const handleButtonClick = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -41,7 +64,32 @@ const Youtube = () => {
 
       console.log('Light mode enabled');
     }
+
+
   }, []);
+
+  function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+
+  // useEffect(() => {
+  //   if (google) {
+  //     if (google.accounts) {
+  //       google.accounts.id.initialize({
+  //         client_id: "79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com",
+  //         callback: handleCredentialResponse
+  //       });
+  //       google.accounts.id.renderButton(
+  //         document.getElementById("buttonDiv"),
+  //         { theme: "outline", size: "large" }  // customization attributes
+  //       );
+  //       google.accounts.id.prompt(); // also display the One Tap dialog
+  //     }
+
+  //   }
+
+  // }, [google])
+
 
   return (
     <div
@@ -53,7 +101,28 @@ const Youtube = () => {
       }}
       ref={extensionContainerRef}
     >
-      <GoogleLogin onSuccess={() => null} onError={() => null} useOneTap />
+      {/* <div id="buttonDiv"></div>
+      <GoogleLogin
+        onSuccess={credentialResponse => {
+          console.log(credentialResponse);
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }} />
+      <div id="g_id_onload"
+        data-client_id="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-callback="OnSuccess"
+        data-logo_alignment="left">
+      </div> */}
+      {/* <div ref={divRef} /> */}
       <Searchbar
         loading={loading}
         onSubmit={(query) => {

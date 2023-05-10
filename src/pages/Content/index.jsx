@@ -58,11 +58,11 @@ if (
 
           const root = ReactDOM.createRoot(div);
           root.render(
-            <GoogleOAuthProvider clientId="79132329678-6gdji4k1kjtm14e12tjng48p55m767se.apps.googleusercontent.com">
-              <React.StrictMode>
+            <React.StrictMode>
+              <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
                 <Youtube />
-              </React.StrictMode>
-            </GoogleOAuthProvider>
+              </GoogleOAuthProvider>
+            </React.StrictMode>
           );
 
           // Stop observing mutations after the first injection
