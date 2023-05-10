@@ -12,8 +12,6 @@ import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
 import { GoogleLogin } from '@react-oauth/google';
 
-
-
 const Youtube = () => {
   const [results, setResults] = useState([]);
   const [extensionActive, setExtensionActive] = useState(false);
@@ -43,7 +41,6 @@ const Youtube = () => {
   //   }
   // }, [divRef.current]);
 
-
   const handleButtonClick = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { action: 'seekTo', time: 30 });
@@ -64,12 +61,10 @@ const Youtube = () => {
 
       console.log('Light mode enabled');
     }
-
-
   }, []);
 
   function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
+    console.log('Encoded JWT ID token: ' + response.credential);
   }
 
   // useEffect(() => {
@@ -89,7 +84,6 @@ const Youtube = () => {
   //   }
 
   // }, [google])
-
 
   return (
     <div
@@ -175,7 +169,7 @@ const Youtube = () => {
                   setLoading(false);
 
                   setShowResults(true);
-                }, 600);
+                }, 300);
               }
 
               setLoading(false);
@@ -198,7 +192,7 @@ const Youtube = () => {
             query={globalQuery}
             key={index}
             dark={dark}
-            style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
+            style={{ transitionDelay: `${(index + 1) * 0.06}s` }}
             className={`${showResults ? 'show' : ''}`}
           />
         ))}

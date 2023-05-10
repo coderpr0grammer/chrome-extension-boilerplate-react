@@ -94,7 +94,11 @@ const ResultComponent = (props) => {
         <div className="playButton">
           <FontAwesomeIcon
             icon={faPlay}
-            style={{ color: 'inherit', width: 8, height: 8 }}
+            style={{
+              color: props.dark ? 'white' : 'black',
+              width: 8,
+              height: 8,
+            }}
           />
         </div>
         <p
