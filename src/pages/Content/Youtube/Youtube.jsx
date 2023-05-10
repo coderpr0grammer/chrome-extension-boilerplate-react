@@ -10,6 +10,7 @@ import Mark from 'mark.js';
 import ResultComponent from './ResultComponent';
 import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Youtube = () => {
   const [results, setResults] = useState([]);
@@ -52,6 +53,7 @@ const Youtube = () => {
       }}
       ref={extensionContainerRef}
     >
+      <GoogleLogin onSuccess={() => null} onError={() => null} useOneTap />
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
@@ -81,7 +83,9 @@ const Youtube = () => {
           )
             .then((response) => {
               if (!response.ok) {
-                throw new Error('Network response was not ok. Internal server error!');
+                throw new Error(
+                  'Network response was not ok. Internal server error!'
+                );
               }
               return response.json();
             })
@@ -109,7 +113,7 @@ const Youtube = () => {
             })
             .catch(function (error) {
               setLoading(false);
-              console.log('error: ', error)
+              console.log('error: ', error);
               alert(error);
             });
 

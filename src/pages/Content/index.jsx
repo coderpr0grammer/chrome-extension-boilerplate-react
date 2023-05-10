@@ -4,6 +4,7 @@ import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
 // import { YoutubeTranscript } from 'youtube-transcript';
 // import { YoutubeTranscript } from 'youtube-transcript';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 var { Readability, isProbablyReaderable } = require('@mozilla/readability');
 
 // import Mark from 'mark.js';
@@ -57,9 +58,11 @@ if (
 
           const root = ReactDOM.createRoot(div);
           root.render(
-            <React.StrictMode>
-              <Youtube />
-            </React.StrictMode>
+            <GoogleOAuthProvider clientId="79132329678-6gdji4k1kjtm14e12tjng48p55m767se.apps.googleusercontent.com">
+              <React.StrictMode>
+                <Youtube />
+              </React.StrictMode>
+            </GoogleOAuthProvider>
           );
 
           // Stop observing mutations after the first injection
