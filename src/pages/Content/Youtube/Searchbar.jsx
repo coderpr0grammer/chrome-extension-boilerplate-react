@@ -49,7 +49,7 @@ const Searchbar = (props) => {
           position: 'relative',
           zIndex: 1,
           boxShadow: 'rgba(0,0,0,0.5) 0px 0px 20px 0px',
-          marginBottom: 20,
+          marginBottom: 10,
         }}
         ref={containerRef}
         className="searchbar"
@@ -140,7 +140,10 @@ const Searchbar = (props) => {
               console.log(e.key);
               if (e.key == 'Enter') {
                 e.preventDefault();
-                props.onSubmit(inputText);
+                if (!props.loading) {
+
+                  props.onSubmit(inputText);
+                }
               } else if (e.key === 'Backspace') {
                 setTextareaHeight('auto');
               }

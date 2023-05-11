@@ -5,7 +5,9 @@
 
 .responseComponent.show {
     opacity: 1;
+    transition: opacity 0.06s ease-in-out;
 }
+
 
 .responseComponent {
     opacity: 0;
@@ -87,7 +89,7 @@ strong {
 
 .playButton.light {
     border: 1px solid black;
-    
+
 }
 
 .playButton {
@@ -110,5 +112,4 @@ strong {
 .playButton.dark:hover {
     background-color: white;
     color: black
-
 }

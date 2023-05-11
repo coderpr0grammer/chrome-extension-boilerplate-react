@@ -4,7 +4,7 @@ import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
 // import { YoutubeTranscript } from 'youtube-transcript';
 // import { YoutubeTranscript } from 'youtube-transcript';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 var { Readability, isProbablyReaderable } = require('@mozilla/readability');
 
 // import Mark from 'mark.js';
@@ -103,9 +103,9 @@ if (
           root.render(
             <React.StrictMode>
               <ColorThemeContextProvider>
-                <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
-                  <Youtube />
-                </GoogleOAuthProvider>
+                {/* <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"> */}
+                <Youtube />
+                {/* </GoogleOAuthProvider> */}
               </ColorThemeContextProvider>
             </React.StrictMode>
           );

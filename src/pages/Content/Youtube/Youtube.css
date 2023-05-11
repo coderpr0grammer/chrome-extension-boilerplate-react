@@ -7,6 +7,33 @@
 
 }
 
+.drawerButton.dark {
+  box-shadow: rgba(245, 163, 83, 0) 0px -20px 20px 0px;
+
+  background-color: #150E0E;
+
+}
+
+.drawerButton.light {
+  box-shadow: rgba(245, 163, 83, 0) 0px -20px 20px 0px;
+  background-color: white;
+}
+
+.drawerButton:hover {
+  box-shadow: rgba(245, 163, 83, 0) 0px 2px 20px 0px;
+}
+
+.drawerButton {
+  transition: 0.3s;
+  border-radius: 5px 5px 0 0;
+  border: none;
+  padding: 5px;
+  width: 30px;
+  cursor: pointer;
+  height: 30px;
+  margin-bottom: -20px;
+}
+
 .errorContainer {
   opacity: 0;
   border-radius: 10px;

@@ -10,8 +10,11 @@ import Mark from 'mark.js';
 import ResultComponent from './ResultComponent';
 import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
-import { GoogleLogin } from '@react-oauth/google';
 import { ColorThemeContext } from '..';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 
 const Youtube = () => {
   const [results, setResults] = useState([]);
@@ -20,6 +23,7 @@ const Youtube = () => {
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   // const [dark, setDark] = useState(false);
+  const [displayNone, setDisplayNone] = useState(true);
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
   const errorContainer = useRef(null);
@@ -167,9 +171,9 @@ const Youtube = () => {
                 );
               } else {
                 setResults(data.results.matches);
+                setDisplayNone(false)
                 setTimeout(() => {
                   setLoading(false);
-
                   setShowResults(true);
                 }, 300);
               }
@@ -191,18 +195,30 @@ const Youtube = () => {
       />
 
       {!error &&
-        results &&
-        results.map((item, index) => (
-          <ResultComponent
-            content={item.metadata.text}
-            timeStampURL={item.metadata.url}
-            query={globalQuery}
-            key={index}
-            dark={dark}
-            style={{ transitionDelay: `${(index + 1) * 0.06}s` }}
-            className={`${showResults ? 'show' : ''}`}
-          />
-        ))}
+        results.length > 0 && (
+          <>
+            <button className={`drawerButton ${dark ? 'dark' : 'light'}`} style={{ marginBottom: `${displayNone ? 20 : -20}`, display: 'inline-block', width: 'auto', color: dark ? 'white' : 'black' }} onClick={() => {
+              setShowResults(!showResults)
+              setTimeout(() => {
+                setDisplayNone(showResults)
+                console.log('setting display none to ', showResults)
+              }, 3000)
+            }}><FontAwesomeIcon icon={showResults ? faChevronUp : faChevronDown} style={{ color: `gray` }} />{displayNone ? "Show Results" : "Hide results"}</button>
+            {results.map((item, index) => (
+              <ResultComponent
+                content={item.metadata.text}
+                timeStampURL={item.metadata.url}
+                query={globalQuery}
+                key={index}
+                dark={dark}
+                style={{ transitionDelay: `${(index + 1) * 0.06}s`, display: displayNone ? 'none' : 'block' }}
+                className={`${showResults ? 'show' : ''}`}
+              />
+            ))
+            }
+          </>
+        )
+      }
       {error && (
         <div
           className="errorContainer"
