@@ -10,7 +10,7 @@
 /build
 
 # zip
-/zip
+# /zip
 
 # misc
 .DS_Store
