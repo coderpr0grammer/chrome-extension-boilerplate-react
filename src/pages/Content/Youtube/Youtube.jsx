@@ -182,7 +182,7 @@ const Youtube = () => {
               setError(error);
               console.log('error: ', error);
               setError(
-                "We're currently experiencing issues with our servers. We apologize for the incovenience, please try later!"
+                "This video took a bit longer to process so please press Enter again to try and get results. If that doesn't work, we're probably experiencing issues with our servers."
               );
             });
 
