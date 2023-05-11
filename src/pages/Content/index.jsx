@@ -15,6 +15,7 @@ rootElement.id = 'react-chrome-app';
 console.log(window.location);
 document.body.appendChild(rootElement);
 
+/*
 if (isProbablyReaderable(document)) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
@@ -37,6 +38,7 @@ if (isProbablyReaderable(document)) {
 } else {
   console.log('not readable');
 }
+*/
 
 if (
   window.location.hostname === 'www.youtube.com' &&

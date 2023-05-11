@@ -14,12 +14,14 @@ import { GoogleLogin } from '@react-oauth/google';
 
 const Youtube = () => {
   const [results, setResults] = useState([]);
+  const [error, setError] = useState('');
   const [extensionActive, setExtensionActive] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
+  const errorContainer = useRef(null);
 
   // const divRef = useRef(null);
 
@@ -54,10 +56,12 @@ const Youtube = () => {
     ) {
       // The user has requested a dark color scheme
       setDark(true);
+      extensionContainerRef.current.style.color = 'white';
       console.log('Dark mode enabled');
     } else {
       // The user has requested a light color scheme
       setDark(false);
+      extensionContainerRef.current.style.color = 'black';
 
       console.log('Light mode enabled');
     }
@@ -84,6 +88,12 @@ const Youtube = () => {
   //   }
 
   // }, [google])
+
+  useEffect(() => {
+    setTimeout(() => {
+      errorContainer.current.style.opacity = 1;
+    }, 0);
+  }, [error]);
 
   return (
     <div
@@ -120,6 +130,7 @@ const Youtube = () => {
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
+          setError('');
           setGlobalQuery(query);
           setLoading(true);
           setShowResults(false);
@@ -154,17 +165,18 @@ const Youtube = () => {
             })
             .then((data) => {
               if (data == 'TranscriptError') {
-                alert('Subtitles not avaiable or video is restricted');
+                setError('Subtitles not avaiable or video is restricted');
               } else if (data == 'LengthError') {
-                alert(
-                  'For our beta version, videos cannot be more than 3 hours'
+                setError(
+                  "Unfortunately for our Beta release we can't Skm videos cannot be longer than 2 hours"
                 );
+                console.log(error);
               } else if (data == 'ApiError') {
-                alert('Invalid request');
+                setError(
+                  'We had trouble processing this video. Please try again.'
+                );
               } else {
-                console.log(data.results.matches);
                 setResults(data.results.matches);
-                console.log(data);
                 setTimeout(() => {
                   setLoading(false);
 
@@ -176,15 +188,20 @@ const Youtube = () => {
             })
             .catch(function (error) {
               setLoading(false);
+              console.log('error message: ' + error);
+              setError(error);
               console.log('error: ', error);
-              alert(error);
+              setError(
+                "We're currently experiencing issues with our servers. We apologize for the incovenience, please try later!"
+              );
             });
 
           // console.log(windowFind(query));
         }}
       />
 
-      {results &&
+      {!error &&
+        results &&
         results.map((item, index) => (
           <ResultComponent
             content={item.metadata.text}
@@ -196,6 +213,15 @@ const Youtube = () => {
             className={`${showResults ? 'show' : ''}`}
           />
         ))}
+      {error && (
+        <div
+          className="errorContainer"
+          style={{ transition: 'opacity 2s ease-in-out' }}
+          ref={errorContainer}
+        >
+          <p>{error}</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,6 +7,20 @@
 
 }
 
+.errorContainer {
+  opacity: 0;
+  border-radius: 10px;
+  color: inherit;
+  padding: 10px;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: rgba(245, 163, 83, .8) 0px 2px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
 /* 
 .results::-webkit-scrollbar {
   width: 0.2em;
