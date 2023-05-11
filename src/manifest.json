@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "permissions": [
     "activeTab"
   ],
@@ -9,14 +9,6 @@
   "background": {
     "service_worker": "background.bundle.js"
   },
-  "content_security_policy": "default-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com; script-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com https://*.googleapis.com 'unsafe-eval'; object-src 'self'",
-  "oauth2": {
-    "client_id": "79132329678-6gdji4k1kjtm14e12tjng48p55m767se.apps.googleusercontent.com",
-    "scopes": [
-      ""
-    ]
-  },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlfvkWAy8qiDyN9Jd5lERsYP9p1OmXaYI9V+b7fDW11oQrcfBPFdF3LmgiUm7hTUbP4OAyecvT6wvji/tqONaAjgBzNwapXTeUm4wsLBbeaJbzj0nR1q11jsBiUfzzvIbSdXbDSqAJY83zKfr01NFH1pjhJOJSbtIj6qRZF/RmY1+gnuurL/yTWNvfpTHbw/utiRA1Z5f6yma3Hi2bEwxoaRasAAUPZ++RD7YWEkS09cFKDs3sfalxB+jgehz+7TG52Fw2bEcNbDWtW21gHqgZ2th+2MpdvvRrt19b2YH/xEax67JLjmdO+nLsTyrJuIBd9nPLrUtJgFT0Jo3+r8qRQIDAQAB",
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
