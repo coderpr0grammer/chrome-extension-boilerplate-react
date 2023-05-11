@@ -45,21 +45,33 @@ export const ColorThemeContext = createContext();
 const ColorThemeContextProvider = ({ children }) => {
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      // The user has requested a dark color scheme
-      setDark(true);
-      // extensionContainerRef.current.style.color = 'white';
-      console.log('Dark mode enabled');
-    } else {
-      // The user has requested a light color scheme
-      setDark(false);
-      // extensionContainerRef.current.style.color = 'black';
 
-      console.log('Light mode enabled');
+    const isDarkMode = document.documentElement.getAttribute('dark') === 'true';
+
+    if (isDarkMode) {
+      // YouTube is in dark mode
+      setDark(true);
+      console.log('YouTube is in dark mode');
+    } else {
+      // YouTube is in light 
+      setDark(false);
+      console.log('YouTube is in light mode');
     }
+    // if (
+    //   window.matchMedia &&
+    //   window.matchMedia('(prefers-color-scheme: dark)').matches
+    // ) {
+    //   // The user has requested a dark color scheme
+    //   setDark(true);
+    //   // extensionContainerRef.current.style.color = 'white';
+    //   console.log('Dark mode enabled');
+    // } else {
+    //   // The user has requested a light color scheme
+    //   setDark(false);
+    //   // extensionContainerRef.current.style.color = 'black';
+
+    //   console.log('Light mode enabled');
+    // }
   }, []);
 
   return (
