@@ -113,15 +113,9 @@ const ResultComponent = (props) => {
             }}
           />
         </div>
-        <p
-          style={{ color: dark ? 'white' : 'black', display: 'inline' }}
-          dangerouslySetInnerHTML={{
-            __html:
-              '...' +
-              boldenWordInString(props.query.split(' '), props.content) +
-              '...',
-          }}
-        ></p>
+        <p style={{ color: dark ? 'white' : 'black', display: 'inline' }}>
+          {props.content}
+        </p>
       </div>
     </div>
   );
