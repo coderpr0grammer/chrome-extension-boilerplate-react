@@ -1,10 +1,7 @@
 {
   "manifest_version": 2,
   "permissions": [
-    "activeTab",
-    "storage",
-    "identity",
-    "*://*.google.com/*"
+    "activeTab"
   ],
   "name": "Skm: Skim through videos instantly",
   "description": "Find the clips you want by just searching using our powerful AI video search engine",
