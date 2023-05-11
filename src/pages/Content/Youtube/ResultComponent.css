@@ -81,6 +81,15 @@ strong {
     background-color: #2A3F63;
 }
 
+.playButton.dark {
+    border: 1px solid white;
+}
+
+.playButton.light {
+    border: 1px solid black;
+    
+}
+
 .playButton {
     display: inline-flex;
     border-radius: 50px;
@@ -90,12 +99,16 @@ strong {
     justify-content: center;
     padding: 5px;
     transition: 0.3s;
-    color: white;
-    border: 1px solid white;
     margin-right: 5px;
 }
 
-.playButton:hover {
+.playButton.light:hover {
+    background-color: black;
+    color: white
+}
+
+.playButton.dark:hover {
     background-color: white;
-    color: black;
+    color: black
+
 }

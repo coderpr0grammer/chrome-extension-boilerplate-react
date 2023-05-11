@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
@@ -40,6 +40,35 @@ if (isProbablyReaderable(document)) {
 }
 */
 
+export const ColorThemeContext = createContext();
+
+const ColorThemeContextProvider = ({ children }) => {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // The user has requested a dark color scheme
+      setDark(true);
+      // extensionContainerRef.current.style.color = 'white';
+      console.log('Dark mode enabled');
+    } else {
+      // The user has requested a light color scheme
+      setDark(false);
+      // extensionContainerRef.current.style.color = 'black';
+
+      console.log('Light mode enabled');
+    }
+  }, []);
+
+  return (
+    <ColorThemeContext.Provider value={{ dark }}>
+      {children}
+    </ColorThemeContext.Provider>
+  );
+};
+
 if (
   window.location.hostname === 'www.youtube.com' &&
   window.location.pathname === '/watch'
@@ -61,9 +90,11 @@ if (
           const root = ReactDOM.createRoot(div);
           root.render(
             <React.StrictMode>
-              <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
-                <Youtube />
-              </GoogleOAuthProvider>
+              <ColorThemeContextProvider>
+                <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
+                  <Youtube />
+                </GoogleOAuthProvider>
+              </ColorThemeContextProvider>
             </React.StrictMode>
           );
 

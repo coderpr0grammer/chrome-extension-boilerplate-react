@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import './ResultComponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { ColorThemeContext } from '..';
 
 const ResultComponent = (props) => {
+  const { dark } = useContext(ColorThemeContext);
   console.log(props.dark);
 
   const player = useRef(null);
@@ -101,18 +103,18 @@ const ResultComponent = (props) => {
       onClick={handleButtonClick}
     >
       <div style={{ display: 'inline' }}>
-        <div className="playButton">
+        <div className={`playButton ${dark ? 'dark' : 'light'}`}>
           <FontAwesomeIcon
             icon={faPlay}
             style={{
-              color: props.dark ? 'white' : 'black',
+              color: 'inherit',
               width: 8,
               height: 8,
             }}
           />
         </div>
         <p
-          style={{ color: props.dark ? 'white' : 'black', display: 'inline' }}
+          style={{ color: dark ? 'white' : 'black', display: 'inline' }}
           dangerouslySetInnerHTML={{
             __html:
               '...' +

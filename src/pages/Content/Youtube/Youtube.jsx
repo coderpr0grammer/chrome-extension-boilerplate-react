@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 // import logo from '../../assets/img/logo.svg';
 // import Greetings from '../../containers/Greetings/Greetings';
 import './Youtube.css';
@@ -11,6 +11,7 @@ import ResultComponent from './ResultComponent';
 import './Searchbar.css';
 import LoadingIcon from './LoadingIcon.js';
 import { GoogleLogin } from '@react-oauth/google';
+import { ColorThemeContext } from '..';
 
 const Youtube = () => {
   const [results, setResults] = useState([]);
@@ -18,10 +19,12 @@ const Youtube = () => {
   const [extensionActive, setExtensionActive] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [dark, setDark] = useState(false);
+  // const [dark, setDark] = useState(false);
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
   const errorContainer = useRef(null);
+
+  const { dark } = useContext(ColorThemeContext);
 
   // const divRef = useRef(null);
 
@@ -48,24 +51,6 @@ const Youtube = () => {
       chrome.tabs.sendMessage(tabs[0].id, { action: 'seekTo', time: 30 });
     });
   };
-
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      // The user has requested a dark color scheme
-      setDark(true);
-      extensionContainerRef.current.style.color = 'white';
-      console.log('Dark mode enabled');
-    } else {
-      // The user has requested a light color scheme
-      setDark(false);
-      extensionContainerRef.current.style.color = 'black';
-
-      console.log('Light mode enabled');
-    }
-  }, []);
 
   function handleCredentialResponse(response) {
     console.log('Encoded JWT ID token: ' + response.credential);
@@ -95,6 +80,10 @@ const Youtube = () => {
     }, 0);
   }, [error]);
 
+  useEffect(() => {
+    console.log('is dark? ', dark);
+  }, [dark]);
+
   return (
     <div
       id="main-popup-skm"
@@ -102,6 +91,7 @@ const Youtube = () => {
         top: 50,
         right: 50,
         width: '100%',
+        color: dark ? 'white' : 'black',
       }}
       ref={extensionContainerRef}
     >
