@@ -45,7 +45,6 @@ export const ColorThemeContext = createContext();
 const ColorThemeContextProvider = ({ children }) => {
   const [dark, setDark] = useState(false);
   useEffect(() => {
-
     const isDarkMode = document.documentElement.getAttribute('dark') === 'true';
 
     if (isDarkMode) {
@@ -53,7 +52,7 @@ const ColorThemeContextProvider = ({ children }) => {
       setDark(true);
       console.log('YouTube is in dark mode');
     } else {
-      // YouTube is in light 
+      // YouTube is in light
       setDark(false);
       console.log('YouTube is in light mode');
     }

@@ -14,6 +14,20 @@
 
 }
 
+.drawerButton::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  /* control the spread */
+  transform: translate(0px, 0px);
+  /* control the offsets */
+  z-index: -1;
+  /* place the element behind */
+  background: conic-gradient(from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700);
+  filter: blur(20px);
+  border-radius: 20px;
+}
+
 .drawerButton.light {
   box-shadow: rgba(245, 163, 83, 0) 0px -20px 20px 0px;
   background-color: white;
@@ -25,13 +39,17 @@
 
 .drawerButton {
   transition: 0.3s;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0px 0px 10px 10px;
   border: none;
   padding: 5px;
   width: 30px;
   cursor: pointer;
   height: 30px;
-  margin-bottom: -20px;
+  bottom: 10px;
+  left: 20px;
+  margin-bottom: 10px;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .errorContainer {

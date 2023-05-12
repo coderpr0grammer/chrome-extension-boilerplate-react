@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-
 const Youtube = () => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState('');
@@ -171,7 +170,7 @@ const Youtube = () => {
                 );
               } else {
                 setResults(data.results.matches);
-                setDisplayNone(false)
+                setDisplayNone(false);
                 setTimeout(() => {
                   setLoading(false);
                   setShowResults(true);
@@ -194,31 +193,63 @@ const Youtube = () => {
         }}
       />
 
-      {!error &&
-        results.length > 0 && (
-          <>
-            <button className={`drawerButton ${dark ? 'dark' : 'light'}`} style={{ marginBottom: `${displayNone ? 20 : -20}`, display: 'inline-block', width: 'auto', color: dark ? 'white' : 'black' }} onClick={() => {
-              setShowResults(!showResults)
-              setTimeout(() => {
-                setDisplayNone(showResults)
-                console.log('setting display none to ', showResults)
-              }, 3000)
-            }}><FontAwesomeIcon icon={showResults ? faChevronUp : faChevronDown} style={{ color: `gray` }} />{displayNone ? "Show Results" : "Hide results"}</button>
-            {results.map((item, index) => (
-              <ResultComponent
-                content={item.metadata.text}
-                timeStampURL={item.metadata.url}
-                query={globalQuery}
-                key={index}
-                dark={dark}
-                style={{ transitionDelay: `${(index + 1) * 0.06}s`, display: displayNone ? 'none' : 'block' }}
-                className={`${showResults ? 'show' : ''}`}
-              />
-            ))
-            }
-          </>
-        )
-      }
+      {!error && results.length > 0 && (
+        <>
+          <button
+            className={`drawerButton ${dark ? 'dark' : 'light'}`}
+            style={{
+              marginBottom: `${displayNone ? 20 : -20}`,
+              display: 'inline-block',
+              width: 'auto',
+              color: dark ? 'white' : 'black',
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            }}
+            onClick={() => {
+              if (showResults) {
+                setShowResults(false);
+                setTimeout(() => {
+                  setDisplayNone(true);
+                  console.log('setting display none to ', showResults);
+                }, 600);
+              } else {
+                setDisplayNone(false);
+                setTimeout(() => {
+                  setShowResults(true);
+                }, 300);
+              }
+            }}
+          >
+            <FontAwesomeIcon
+              icon={showResults ? faChevronUp : faChevronDown}
+              style={{ color: `white` }}
+            />
+            <p
+              style={{
+                color: 'white',
+                display: 'inline-block',
+                fontFamily:
+                  'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+              }}
+            >
+              &nbsp;{displayNone ? 'Hide results' : 'Show Results'}&nbsp;
+            </p>
+          </button>
+          {results.map((item, index) => (
+            <ResultComponent
+              content={item.metadata.text}
+              timeStampURL={item.metadata.url}
+              query={globalQuery}
+              key={index}
+              dark={dark}
+              style={{
+                transitionDelay: `${(index + 1) * 0.06}s`,
+                display: displayNone ? 'none' : 'block',
+              }}
+              className={`${showResults ? 'show' : ''}`}
+            />
+          ))}
+        </>
+      )}
       {error && (
         <div
           className="errorContainer"
