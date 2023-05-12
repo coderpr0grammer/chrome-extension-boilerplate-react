@@ -27,7 +27,7 @@ const Youtube = () => {
   const extensionContainerRef = useRef(null);
   const errorContainer = useRef(null);
 
-  const { dark } = useContext(ColorThemeContext);
+  const { dark, setDark } = useContext(ColorThemeContext);
 
   // const divRef = useRef(null);
 
@@ -123,6 +123,19 @@ const Youtube = () => {
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
+
+          const isDarkMode = document.documentElement.getAttribute('dark') === 'true';
+
+          if (isDarkMode) {
+            // YouTube is in dark mode
+            setDark(true);
+            console.log('YouTube is in dark mode');
+          } else {
+            // YouTube is in light
+            setDark(false);
+            console.log('YouTube is in light mode');
+          }
+
           setError('');
           setGlobalQuery(query);
           setLoading(true);
@@ -231,7 +244,7 @@ const Youtube = () => {
                   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
               }}
             >
-              &nbsp;{displayNone ? 'Hide results' : 'Show Results'}&nbsp;
+              &nbsp;{displayNone ? 'Show Results' : 'Hide results'}&nbsp;
             </p>
           </button>
           {results.map((item, index) => (

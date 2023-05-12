@@ -74,7 +74,7 @@ const ColorThemeContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ColorThemeContext.Provider value={{ dark }}>
+    <ColorThemeContext.Provider value={{ dark, setDark }}>
       {children}
     </ColorThemeContext.Provider>
   );
