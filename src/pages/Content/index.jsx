@@ -15,31 +15,6 @@ rootElement.id = 'react-chrome-app';
 console.log(window.location);
 document.body.appendChild(rootElement);
 
-/*
-if (isProbablyReaderable(document)) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <React.StrictMode>
-      <Popup />
-    </React.StrictMode>
-  );
-  var documentClone = document.cloneNode(true);
-  var article = new Readability(documentClone).parse();
-  console.log(article);
-  let segments = article.textContent.split('\n');
-  segments.forEach((item, index) => {
-    console.log('length: ', item.length);
-  });
-  // console.log(article.content.split('\n'));
-  console.log('is readable');
-  // var instance = new Mark(document);
-
-  // instance.mark("TA43 was still in commission and available to fight, although she saw little action.[27]", { "accuracy": "complementary", "diacritics": true });
-} else {
-  console.log('not readable');
-}
-*/
-
 export const ColorThemeContext = createContext();
 
 const ColorThemeContextProvider = ({ children }) => {
@@ -56,21 +31,6 @@ const ColorThemeContextProvider = ({ children }) => {
       setDark(false);
       console.log('YouTube is in light mode');
     }
-    // if (
-    //   window.matchMedia &&
-    //   window.matchMedia('(prefers-color-scheme: dark)').matches
-    // ) {
-    //   // The user has requested a dark color scheme
-    //   setDark(true);
-    //   // extensionContainerRef.current.style.color = 'white';
-    //   console.log('Dark mode enabled');
-    // } else {
-    //   // The user has requested a light color scheme
-    //   setDark(false);
-    //   // extensionContainerRef.current.style.color = 'black';
-
-    //   console.log('Light mode enabled');
-    // }
   }, []);
 
   return (
@@ -79,6 +39,15 @@ const ColorThemeContextProvider = ({ children }) => {
     </ColorThemeContext.Provider>
   );
 };
+
+window.addEventListener('popstate', function (e) {
+  alert(e.state);
+  console.log('changed url', e.state);
+});
+
+window.addEventListener('locationchange', function () {
+  console.log('location changed!');
+});
 
 if (
   window.location.hostname === 'www.youtube.com' &&

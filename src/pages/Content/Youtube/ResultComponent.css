@@ -83,14 +83,14 @@ strong {
     background-color: #2A3F63;
 }
 
-.playButton.dark {
+/* .playButton.dark {
     border: 1px solid white;
 }
 
 .playButton.light {
     border: 1px solid black;
 
-}
+} */
 
 .playButton {
     display: inline-flex;
@@ -102,9 +102,17 @@ strong {
     padding: 5px;
     transition: 0.3s;
     margin-right: 5px;
+    color:#ED7557;
+    border: 1px solid #ED7557;
+
 }
 
-.playButton.light:hover {
+.playButton:hover {
+    background-color: #ED7557;
+    color: white;
+}
+
+/* .playButton.light:hover {
     background-color: black;
     color: white
 }
@@ -112,4 +120,4 @@ strong {
 .playButton.dark:hover {
     background-color: white;
     color: black
-}
+} */

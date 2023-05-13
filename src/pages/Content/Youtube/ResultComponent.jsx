@@ -113,9 +113,7 @@ const ResultComponent = (props) => {
             }}
           />
         </div>
-        <p style={{ color: dark ? 'white' : 'black', display: 'inline' }}>
-          {props.content}
-        </p>
+        <p style={{ color: '#ED7557', display: 'inline' }}>{props.content}</p>
       </div>
     </div>
   );
