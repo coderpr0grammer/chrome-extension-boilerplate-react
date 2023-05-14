@@ -41,7 +41,7 @@ const ColorThemeContextProvider = ({ children }) => {
 };
 
 window.addEventListener('popstate', function (e) {
-  alert(e.state);
+  // alert(e.state);
   console.log('changed url', e.state);
 });
 
