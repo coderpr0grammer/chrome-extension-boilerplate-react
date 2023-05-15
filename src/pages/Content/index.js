@@ -2,18 +2,18 @@ import React, { useState, createContext, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
-// import { YoutubeTranscript } from 'youtube-transcript';
-// import { YoutubeTranscript } from 'youtube-transcript';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
-var { Readability, isProbablyReaderable } = require('@mozilla/readability');
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+// var { Readability, isProbablyReaderable } = require('@mozilla/readability');
 
 // import Mark from 'mark.js';
 
 const rootElement = document.createElement('div');
 rootElement.id = 'react-chrome-app';
 
-console.log(window.location);
 document.body.appendChild(rootElement);
+console.log('running: ', window.location)
 
 export const ColorThemeContext = createContext();
 
@@ -40,24 +40,16 @@ const ColorThemeContextProvider = ({ children }) => {
   );
 };
 
-window.addEventListener('popstate', function (e) {
-  // alert(e.state);
-  console.log('changed url', e.state);
-});
 
-window.addEventListener('locationchange', function () {
-  console.log('location changed!');
-});
 
 if (
-  window.location.hostname === 'www.youtube.com' &&
-  window.location.pathname === '/watch'
+  window.location.hostname === 'www.youtube.com'
 ) {
   const observer = new MutationObserver((mutationsList, observer) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
         // Look for the #secondary div
-        const secondary = document.getElementById('secondary');
+        const secondary = document.getElementById('secondary-inner');
         if (secondary) {
           // The #secondary div is now available, inject your content script
           const div = document.createElement('div');
@@ -65,18 +57,23 @@ if (
           div.classList.remove('hidden');
           div.style.display = 'block';
 
-          secondary.insertBefore(div, secondary.firstChild);
+          setTimeout(() => {
 
-          const root = ReactDOM.createRoot(div);
-          root.render(
-            <React.StrictMode>
-              <ColorThemeContextProvider>
-                {/* <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"> */}
-                <Youtube />
-                {/* </GoogleOAuthProvider> */}
-              </ColorThemeContextProvider>
-            </React.StrictMode>
-          );
+            secondary.insertBefore(div, secondary.firstChild);
+
+            const root = ReactDOM.createRoot(div);
+            root.render(
+              <React.StrictMode>
+                <ColorThemeContextProvider>
+                  <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
+                    <Youtube />
+                  </GoogleOAuthProvider>
+                </ColorThemeContextProvider>
+              </React.StrictMode>
+            );
+
+          }, 300)
+
 
           // Stop observing mutations after the first injection
           observer.disconnect();

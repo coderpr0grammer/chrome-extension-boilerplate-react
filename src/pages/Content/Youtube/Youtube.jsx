@@ -78,6 +78,7 @@ const Youtube = () => {
   // }, [google])
 
   useEffect(() => {
+    if (!errorContainer.current) return;
     setTimeout(() => {
       errorContainer.current.style.opacity = 1;
     }, 0);
@@ -171,7 +172,7 @@ const Youtube = () => {
             })
             .then((data) => {
               if (data == 'TranscriptError') {
-                setError('Subtitles not avaiable or video is restricted');
+                setError('Subtitles not available or video is restricted');
               } else if (data == 'LengthError') {
                 setError(
                   "Unfortunately for our Beta release we can't Skm videos cannot be longer than 2 hours"
