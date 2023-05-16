@@ -60,9 +60,9 @@ if (window.location.hostname === 'www.youtube.com') {
             root.render(
               <React.StrictMode>
                 <ColorThemeContextProvider>
-                  {/* <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"> */}
-                  <Youtube />
-                  {/* </GoogleOAuthProvider> */}
+                  <GoogleOAuthProvider clientId="173016892459-rmccnmarajrv9kctefo9agmjgvd04n1h.apps.googleusercontent.com">
+                    <Youtube />
+                  </GoogleOAuthProvider>
                 </ColorThemeContextProvider>
               </React.StrictMode>
             );

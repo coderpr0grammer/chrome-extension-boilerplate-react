@@ -3,32 +3,20 @@
   "version": "0.0.5",
   "manifest_version": 3,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVzqq8yFfPU0s025T9AOALRl6ZPR79IaTwRRnNsSX37tbeEwEiAn0Ku9GO3XJyBXor6fJVWDbqsCIgkSyM44b5B13djPKccZS2rj+QMTJC3K81B3ldbQVEs8zBmNNvfGTYdkQjVgrBrnMqKIjkYDzd7edEfG3IjbKg+x581XYh7TXXJAYufORm+nG1nd9iXPXAwahxRfRjGK4HcFnNpu13Bv9g92Psvurq2s2xs+YrgGTGGPVFcfW7m4uu5FQzD4p5kNIOBvxGLDDAnhzebvXQOLRFynIP+jbI5S8mp6wC7t47eeL8VtQivg9Zavka+ufVEke9lTcoaySuQDKgzcIwIDAQAB",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "identity",
+    "activeTab"
+  ],
+  "oauth2": {
+    "client_id": "173016892459-rmccnmarajrv9kctefo9agmjgvd04n1h.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
   "name": "SkmAI: AI-powered video search on Youtube",
   "options_page": "options.html",
   "background": {
     "service_worker": "background.bundle.js"
-  },
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+E",
-        "linux": "Ctrl+Shift+E",
-        "windows": "Ctrl+Shift+E",
-        "mac": "Ctrl+Shift+E"
-      }
-    },
-    "Ctrl+F": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "Command+Shift+F"
-      },
-      "description": "Ctrl+Shift+F."
-    }
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
   },
   "icons": {
     "128": "icon-128.png"
@@ -40,15 +28,23 @@
         "https://www.youtube.com/*",
         "https://www.youtube.com/watch*"
       ],
-      "js": ["contentScript.bundle.js"],
-      "css": ["content.styles.css"],
+      "js": [
+        "contentScript.bundle.js"
+      ],
+      "css": [
+        "content.styles.css"
+      ],
       "run_at": "document_idle"
     }
   ],
   "devtools_page": "devtools.html",
   "web_accessible_resources": [
     {
-      "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
+      "resources": [
+        "content.styles.css",
+        "icon-128.png",
+        "icon-34.png"
+      ],
       "matches": []
     }
   ]

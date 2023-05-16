@@ -14,6 +14,17 @@ import { ColorThemeContext } from '..';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { app, db } from '../../../../utils/firebaseCredentials';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithCredential,
+} from "firebase/auth";
+import { collection, setDoc, getDoc, doc } from "firebase/firestore";
+
+import { GoogleLogin } from '@react-oauth/google';
 
 const Youtube = () => {
   const [results, setResults] = useState([]);
@@ -89,6 +100,51 @@ const Youtube = () => {
     console.log('is dark? ', dark);
   }, [dark]);
 
+  const auth = getAuth();
+
+
+  const responseMessage = (response) => {
+    // response.preventDefault()
+    console.log(response);
+    // Build Firebase credential with the Google ID token.
+    const idToken = response;
+    const credential = GoogleAuthProvider.credential(null, idToken);
+
+    // Sign in with credential from the Google user.
+    signInWithCredential(auth, credential)
+      .then((u) => {
+        async function checkIfUserExists() {
+          const docRef = doc(db, "users", u.user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            console.log("u.user", u.user);
+            await setDoc(doc(db, "users", u.user.uid), {
+              name: u.user.displayName,
+              email: u.user.email,
+            });
+          }
+        }
+        checkIfUserExists();
+        console.log("u", u);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The credential that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log(errorCode, errorMessage);
+        alert(errorCode, errorMessage);
+      });
+  };
+
   return (
     <div
       id="main-popup-skm"
@@ -100,8 +156,14 @@ const Youtube = () => {
       }}
       ref={extensionContainerRef}
     >
-      {/* <div id="buttonDiv"></div>
-      <GoogleLogin
+      <button onClick={() => {
+        chrome.runtime.sendMessage({ type: "getAuthToken" }, function (response) {
+          console.log(response)
+          responseMessage(response.token)
+        });
+      }}>get token</button>
+      {/* <div id="buttonDiv"></div> */}
+      {/* <GoogleLogin
         onSuccess={credentialResponse => {
           console.log(credentialResponse);
         }}
@@ -123,7 +185,7 @@ const Youtube = () => {
         data-callback="OnSuccess"
         data-logo_alignment="left"
       ></div> */}
-      <div id="buttonDiv" ref={divRef} />
+      {/* <div id="buttonDiv" ref={divRef} /> */}
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
