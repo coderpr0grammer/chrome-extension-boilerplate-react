@@ -13,7 +13,7 @@ const rootElement = document.createElement('div');
 rootElement.id = 'react-chrome-app';
 
 document.body.appendChild(rootElement);
-console.log('running: ', window.location)
+console.log('running: ', window.location);
 
 export const ColorThemeContext = createContext();
 
@@ -40,11 +40,7 @@ const ColorThemeContextProvider = ({ children }) => {
   );
 };
 
-
-
-if (
-  window.location.hostname === 'www.youtube.com'
-) {
+if (window.location.hostname === 'www.youtube.com') {
   const observer = new MutationObserver((mutationsList, observer) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
@@ -58,22 +54,19 @@ if (
           div.style.display = 'block';
 
           setTimeout(() => {
-
             secondary.insertBefore(div, secondary.firstChild);
 
             const root = ReactDOM.createRoot(div);
             root.render(
               <React.StrictMode>
                 <ColorThemeContextProvider>
-                  <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com">
-                    <Youtube />
-                  </GoogleOAuthProvider>
+                  {/* <GoogleOAuthProvider clientId="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"> */}
+                  <Youtube />
+                  {/* </GoogleOAuthProvider> */}
                 </ColorThemeContextProvider>
               </React.StrictMode>
             );
-
-          }, 300)
-
+          }, 300);
 
           // Stop observing mutations after the first injection
           observer.disconnect();

@@ -26,6 +26,7 @@ const Youtube = () => {
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
   const errorContainer = useRef(null);
+  const divRef = useRef(null);
 
   const { dark, setDark } = useContext(ColorThemeContext);
 
@@ -63,7 +64,7 @@ const Youtube = () => {
   //   if (google) {
   //     if (google.accounts) {
   //       google.accounts.id.initialize({
-  //         client_id: "79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com",
+  //         client_id: "79132329678-pjihj6e9j1l8fnfuf26k62tts0rppu1m.apps.googleusercontent.com",
   //         callback: handleCredentialResponse
   //       });
   //       google.accounts.id.renderButton(
@@ -106,26 +107,28 @@ const Youtube = () => {
         }}
         onError={() => {
           console.log('Login Failed');
-        }} />
-      <div id="g_id_onload"
-        data-client_id="79132329678-16f3go9ciuch6erd9575rqnpr1rsqo7r.apps.googleusercontent.com"
-        data-auto_prompt="false">
-      </div>
-      <div class="g_id_signin"
+        }} /> */}
+      {/* <div
+        id="g_id_onload"
+        data-client_id="79132329678-pjihj6e9j1l8fnfuf26k62tts0rppu1m.apps.googleusercontent.com"
+        data-auto_prompt="false"
+      ></div>
+      <div
+        class="g_id_signin"
         data-type="standard"
         data-size="large"
         data-theme="outline"
         data-text="sign_in_with"
         data-shape="rectangular"
         data-callback="OnSuccess"
-        data-logo_alignment="left">
-      </div> */}
-      {/* <div ref={divRef} /> */}
+        data-logo_alignment="left"
+      ></div> */}
+      <div id="buttonDiv" ref={divRef} />
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
-
-          const isDarkMode = document.documentElement.getAttribute('dark') === 'true';
+          const isDarkMode =
+            document.documentElement.getAttribute('dark') === 'true';
 
           if (isDarkMode) {
             // YouTube is in dark mode

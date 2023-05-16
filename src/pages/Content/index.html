@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popup</title>
+    <style>
+      body {
+        margin: 0px !important;
+        border: none;
+        z-index: 999999;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Popup</title>
-  <style>
-    body {
-      margin: 0px !important;
-      border: none;
-      z-index: 999999;
-    }
+      textarea#text::-webkit-input-placeholder {
+        color: white !important;
+      }
+    </style>
+  </head>
 
-    textarea#text::-webkit-input-placeholder {
-      color: white !important;
-    }
-  </style>
-
-</head>
-
-<body>
-  <div id="app-container"></div>
-</body>
-
+  <body>
+    <div id="app-container"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      function handleCredentialResponse(response) {
+        console.log('Encoded JWT ID token: ' + response.credential);
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: 'YOUR_GOOGLE_CLIENT_ID',
+          callback: handleCredentialResponse,
+        });
+        google.accounts.id.renderButton(
+          document.getElementById('buttonDiv'),
+          { theme: 'outline', size: 'large' } // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      };
+    </script>
+  </body>
 </html>
