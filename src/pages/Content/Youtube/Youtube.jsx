@@ -32,12 +32,16 @@ const Youtube = () => {
   const [extensionActive, setExtensionActive] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [iframeHeight, setIframeHeight] = useState('auto');
+  const [videoId, setVideoId] = useState('');
   // const [dark, setDark] = useState(false);
   const [displayNone, setDisplayNone] = useState(true);
   const [globalQuery, setGlobalQuery] = useState('');
   const extensionContainerRef = useRef(null);
   const errorContainer = useRef(null);
   const divRef = useRef(null);
+  const iframeRef = useRef(null);
+
 
   const { dark, setDark } = useContext(ColorThemeContext);
 
@@ -71,6 +75,13 @@ const Youtube = () => {
     console.log('Encoded JWT ID token: ' + response.credential);
   }
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(new URL(window.location.href).search);
+    const videoId = urlParams.get('v');
+    setVideoId(videoId)
+    console.log(videoId);
+  }, [])
+
   // useEffect(() => {
   //   if (google) {
   //     if (google.accounts) {
@@ -88,6 +99,24 @@ const Youtube = () => {
   //   }
 
   // }, [google])
+
+  useEffect(() => {
+
+    const handleMessage = (event) => {
+      console.log(event)
+      if (event.data.type === 'resize') {
+        const { height } = event.data;
+        setIframeHeight(height)
+      }
+    }
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+
+  }, [])
+
 
   useEffect(() => {
     if (!errorContainer.current) return;
@@ -156,7 +185,12 @@ const Youtube = () => {
       }}
       ref={extensionContainerRef}
     >
-      <button onClick={() => {
+      <div style={{ width: '100%', height: iframeHeight + 80, transition: '0.3s' }}>
+
+        <iframe src={`https://skm-frontend.vercel.app/?vid=${videoId}`} style={{ height: '100%', width: '100%' }} ref={iframeRef} frameborder="0" allowfullscreen="" scrolling="no" allow="clipboard-write" />
+      </div>
+
+      {/* <button onClick={() => {
         chrome.runtime.sendMessage({ type: "getAuthToken" }, function (response) {
           console.log(response)
           responseMessage(response.token)
@@ -186,6 +220,8 @@ const Youtube = () => {
         data-logo_alignment="left"
       ></div> */}
       {/* <div id="buttonDiv" ref={divRef} /> */}
+
+      {/*
       <Searchbar
         loading={loading}
         onSubmit={(query) => {
@@ -338,6 +374,7 @@ const Youtube = () => {
           <p>{error}</p>
         </div>
       )}
+      */}
     </div>
   );
 };

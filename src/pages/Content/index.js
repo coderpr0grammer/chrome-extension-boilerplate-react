@@ -52,6 +52,15 @@ if (window.location.hostname === 'www.youtube.com') {
           div.id = 'my-extension-root';
           div.classList.remove('hidden');
           div.style.display = 'block';
+          // let iframe = document.createElement('iframe');
+          // iframe.src = `https://skm-frontend.vercel.app/?ref=${window.location.href}`;
+          // iframe.style.width = "100%"
+          // iframe.frameborder = "0"
+          // iframe.allowfullscreen = ""
+          // iframe.scrolling = "no"
+          // iframe.allow = "clipboard-write"
+
+          // div.appendChild(iframe)
 
           setTimeout(() => {
             secondary.insertBefore(div, secondary.firstChild);
