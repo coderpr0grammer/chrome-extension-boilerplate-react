@@ -33,7 +33,7 @@ const Youtube = () => {
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [iframeHeight, setIframeHeight] = useState('auto');
-  const [videoId, setVideoId] = useState('');
+  const [videoId, setVideoId] = useState(new URLSearchParams(new URL(window.location.href).search).get('v'));
   // const [dark, setDark] = useState(false);
   const [displayNone, setDisplayNone] = useState(true);
   const [globalQuery, setGlobalQuery] = useState('');
