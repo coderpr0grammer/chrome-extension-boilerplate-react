@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Popup from './Articles/Popup';
 import Youtube from './Youtube/Youtube';
 
-import { GoogleOAuthProvider } from '@react-oauth/google';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // var { Readability, isProbablyReaderable } = require('@mozilla/readability');
 
@@ -69,9 +69,9 @@ if (window.location.hostname === 'www.youtube.com') {
             root.render(
               <React.StrictMode>
                 <ColorThemeContextProvider>
-                  <GoogleOAuthProvider clientId="173016892459-rmccnmarajrv9kctefo9agmjgvd04n1h.apps.googleusercontent.com">
-                    <Youtube />
-                  </GoogleOAuthProvider>
+                  {/* <GoogleOAuthProvider clientId="173016892459-rmccnmarajrv9kctefo9agmjgvd04n1h.apps.googleusercontent.com"> */}
+                  <Youtube />
+                  {/* </GoogleOAuthProvider> */}
                 </ColorThemeContextProvider>
               </React.StrictMode>
             );
