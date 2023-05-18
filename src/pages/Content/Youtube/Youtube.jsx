@@ -187,7 +187,7 @@ const Youtube = () => {
     >
       <div style={{ width: '100%', height: iframeHeight + 80, transition: '0.3s' }}>
 
-        <iframe src={`https://skm-frontend.vercel.app/?vid=${videoId}`} style={{ height: '100%', width: '100%' }} ref={iframeRef} frameborder="0" allowfullscreen="" scrolling="no" allow="clipboard-write" />
+        <iframe src={`https://skm-frontend.vercel.app/?vid=${window.location.href}`} style={{ height: '100%', width: '100%' }} ref={iframeRef} frameborder="0" allowfullscreen="" scrolling="no" allow="clipboard-write" />
       </div>
 
       {/* <button onClick={() => {
