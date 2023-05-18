@@ -108,6 +108,12 @@ const Youtube = () => {
         const { height } = event.data;
         setIframeHeight(height)
       }
+      if (event.data.type === 'jumpToTime') {
+        const { seconds } = event.data;
+        const video = document.querySelector('video')
+        console.log(video)
+        video.currentTime = seconds
+      }
     }
     window.addEventListener('message', handleMessage);
 
