@@ -1,6 +1,6 @@
 {
   "description": "'Skim' through Youtube videos using our revolutionary AI-powered video search tool",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "manifest_version": 3,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVzqq8yFfPU0s025T9AOALRl6ZPR79IaTwRRnNsSX37tbeEwEiAn0Ku9GO3XJyBXor6fJVWDbqsCIgkSyM44b5B13djPKccZS2rj+QMTJC3K81B3ldbQVEs8zBmNNvfGTYdkQjVgrBrnMqKIjkYDzd7edEfG3IjbKg+x581XYh7TXXJAYufORm+nG1nd9iXPXAwahxRfRjGK4HcFnNpu13Bv9g92Psvurq2s2xs+YrgGTGGPVFcfW7m4uu5FQzD4p5kNIOBvxGLDDAnhzebvXQOLRFynIP+jbI5S8mp6wC7t47eeL8VtQivg9Zavka+ufVEke9lTcoaySuQDKgzcIwIDAQAB",
   "permissions": [
