@@ -110,9 +110,10 @@ const Youtube = () => {
       }
       if (event.data.type === 'jumpToTime') {
         const { seconds } = event.data;
+        console.log('seconds', seconds)
         const video = document.querySelector('video')
         console.log(video)
-        video.currentTime = seconds
+        // video.currentTime = seconds
       }
     }
     window.addEventListener('message', handleMessage);
